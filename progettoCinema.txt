@@ -1,6 +1,0 @@
-La app deve fornire informazioni sui film
-(https://www.themoviedb.org/documentation/api) e deve permettere
-all’utente di essere aggiornato sulle uscite più imminenti. L’applicazione deve
-anche fornire dei filtri di ricerca relativamente a parametri specificati
-dall’utente. Infine, deve essere possibile visualizzare i trailer (quando disponibili)
-attraverso youtube (https://developers.google.com/youtube/v3)
