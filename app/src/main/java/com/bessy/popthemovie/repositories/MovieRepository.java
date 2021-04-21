@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieRepository {
-    private static final String TAG = "repository" ;
+    private static final String TAG = "MovieRepository" ;
 
     private static MovieRepository instance;
     private MovieAPIService movieAPIService;

@@ -7,13 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
-import com.bessy.popthemovie.models.MovieAPIResponse;
-import com.bessy.popthemovie.models.MovieViewModel;
-
-import java.util.List;
+import com.bessy.popthemovie.models.MainActivityViewModel;
+import com.bessy.popthemovie.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        /*
+        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MutableLiveData<User> user = mainActivityViewModel.getUser(5);
+        */
 
         /*
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
