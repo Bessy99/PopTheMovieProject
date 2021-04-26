@@ -25,12 +25,18 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        /*
-        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser(5);
-        */
 
-        /*
+        /* recupera user da id
+        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MutableLiveData<User> user = mainActivityViewModel.getUser(3);
+         */
+
+        /* registra nuovo user
+        User u = new User(5,"prova@gmail.com","password5","nomeP","cognomep");
+        user = mainActivityViewModel.saveUser(u);
+         */
+
+        /* recupera movie con titolo "hunger"
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         MutableLiveData<MovieAPIResponse> movieLiveData = movieViewModel.getMovie("hunger");
         */

@@ -3,7 +3,7 @@ package com.bessy.popthemovie.models;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.bessy.popthemovie.repositories.MovieRepository;
+import com.bessy.popthemovie.repositories.MovieAPIRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
 public class MainActivityViewModel extends ViewModel {
@@ -14,11 +14,7 @@ public class MainActivityViewModel extends ViewModel {
         if(movie == null){
             movie = new MutableLiveData<MovieAPIResponse>();
         }
-        MovieRepository.getInstance().getMovie(movie, title);
-        return movie;
-    }
-
-    public MutableLiveData<MovieAPIResponse> getMovie() {
+        MovieAPIRepository.getInstance().getMovie(movie, title);
         return movie;
     }
 
@@ -30,6 +26,16 @@ public class MainActivityViewModel extends ViewModel {
         return user;
     }
 
+    public MutableLiveData<User> saveUser(User userToSave){
+
+        UserRepository.getInstance().saveUser(user, userToSave);
+        return user;
+    }
+
+    //---------------------------------------------> Getter
+    public MutableLiveData<MovieAPIResponse> getMovie() {
+        return movie;
+    }
     public MutableLiveData<User> getUser() {
         return user;
     }

@@ -3,7 +3,9 @@ package com.bessy.popthemovie.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
+import java.io.Serializable;
+
+public class User implements Parcelable, Serializable {
     private long id;
     private String email;
     private String password;
@@ -54,6 +56,7 @@ public class User implements Parcelable {
         }
     };
 
+    //-------------------------------------------> Getter e setter
     public long getId() {
         return id;
     }
@@ -91,4 +94,5 @@ public class User implements Parcelable {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
+    //--------------------------------------------
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.UserService;
 import com.bessy.popthemovie.utils.Constants;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -23,12 +24,11 @@ public class UserRepository {
     private UserService userService;
 
     private UserRepository(){
-        //inizializzo l'istanza di retrofit per fare le query al localhost
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.DB_API_BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         userService  = retrofit.create(UserService.class);
     }
 
-    //synchronized per far si che solo un metodo alla volta abbia accesso all'istanza
+
     public static synchronized UserRepository getInstance(){
         if(instance == null){
             instance = new UserRepository();
@@ -36,6 +36,33 @@ public class UserRepository {
         return instance;
     }
 
+    //------------------------------> SAVE USER
+    public void saveUser(MutableLiveData<User> userLiveData, User userToSave){
+        Call<User> call = userService.postUser(userToSave);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                    userLiveData.postValue(userToSave);
+                }
+                else if(response.errorBody() != null){
+                   Log.d(TAG, "errore1"+response.code());
+                    userLiveData.postValue(userToSave);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                userLiveData.postValue(userToSave);
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+    //------------------------------//
+
+    //------------------------------> GET USER BY ID
     public void getUser(MutableLiveData<User> userLiveData, long id){
         Call<User> call = userService.getUser(id);
         call.enqueue(new Callback<User>() {
@@ -51,8 +78,8 @@ public class UserRepository {
                     user.setNome(response.body().getNome());
                     user.setCognome(response.body().getCognome());
                     user.setPassword(response.body().getPassword());
-
-                    Log.d(TAG, user.getEmail());
+                    Gson jsonConverter = new Gson();
+                    Log.d(TAG, jsonConverter.toJson(user));
                     userLiveData.postValue(user);
                 }
                 else if(response.errorBody() != null){
@@ -71,5 +98,5 @@ public class UserRepository {
             }
         });
     }
-
+    //----------------------------------//
 }

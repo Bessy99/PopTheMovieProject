@@ -46,6 +46,22 @@ public class MovieAPIResponse implements Parcelable {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte((byte) (Response ? 1 : 0));
+        dest.writeString(imdbID);
+        dest.writeString(Title);
+        dest.writeString(Genre);
+        dest.writeString(Poster);
+        dest.writeString(Plot);
+    }
+
+    //------------------------------> GETTER E SETTER
     public boolean isResponse() {
         return Response;
     }
@@ -105,19 +121,7 @@ public class MovieAPIResponse implements Parcelable {
                 ", Plot='" + Plot + '\'' +
                 '}';
     }
+    //-------------------------------------//
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeByte((byte) (Response ? 1 : 0));
-        dest.writeString(imdbID);
-        dest.writeString(Title);
-        dest.writeString(Genre);
-        dest.writeString(Poster);
-        dest.writeString(Plot);
-    }
 }
