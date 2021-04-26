@@ -4,20 +4,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.Set;
 
-public class User implements Parcelable, Serializable {
+public class User implements Parcelable {
     private String email;
     private String password;
     private String nome;
     private String cognome;
+    private Set<Movie> filmVisti;
+    private Set<Movie> filmDaVedere;
 
     public User(){}
 
-    public User(String email, String password, String nome, String cognome) {
+    public User(String email, String password, String nome, String cognome, Set<Movie> filmVisti, Set<Movie> filmDaVedere) {
         this.email = email;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;
+        this.filmVisti = filmVisti;
+        this.filmDaVedere = filmDaVedere;
     }
 
     protected User(Parcel in) {
@@ -25,6 +30,13 @@ public class User implements Parcelable, Serializable {
         password = in.readString();
         nome = in.readString();
         cognome = in.readString();
+        filmVisti = (Set<Movie>) in.readValue(Set.class.getClassLoader());
+        filmDaVedere = (Set<Movie>) in.readValue(Set.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
@@ -33,14 +45,12 @@ public class User implements Parcelable, Serializable {
         dest.writeString(password);
         dest.writeString(nome);
         dest.writeString(cognome);
+        dest.writeValue(filmVisti);
+        dest.writeValue(filmDaVedere);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         @Override
         public User createFromParcel(Parcel in) {
             return new User(in);
@@ -82,6 +92,22 @@ public class User implements Parcelable, Serializable {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    public Set<Movie> getFilmVisti() {
+        return filmVisti;
+    }
+
+    public void setFilmVisti(Set<Movie> filmVisti) {
+        this.filmVisti = filmVisti;
+    }
+
+    public Set<Movie> getFilmDaVedere() {
+        return filmDaVedere;
+    }
+
+    public void setFilmDaVedere(Set<Movie> filmDaVedere) {
+        this.filmDaVedere = filmDaVedere;
     }
     //--------------------------------------------
 }

@@ -77,6 +77,8 @@ public class UserRepository {
                     user.setNome(response.body().getNome());
                     user.setCognome(response.body().getCognome());
                     user.setPassword(response.body().getPassword());
+                    user.setFilmDaVedere(response.body().getFilmDaVedere());
+                    user.setFilmVisti(response.body().getFilmVisti());
                     Gson jsonConverter = new Gson();
                     Log.d(TAG, jsonConverter.toJson(user));
                     userLiveData.postValue(user);

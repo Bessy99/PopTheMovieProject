@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Movie implements Parcelable, Serializable {
+public class Movie implements Parcelable {
     private String id;
     private String titolo;
     private String genere;

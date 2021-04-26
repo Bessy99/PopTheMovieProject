@@ -22,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:scaleType="centerCrop"
-
                 />
 
             <LinearLayout
@@ -49,15 +48,30 @@
                     />
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttoVediDettagli"
-                style="?attr/borderlessButtonStyle"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="vedi dettagli" />
+                android:orientation="horizontal">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttoAggiungiAllaLista"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="aggiungi alla lista"
+                    android:layout_marginRight="16dp"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttoVediDettagli"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="vedi dettagli" />
             </LinearLayout>
+
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
+import com.bessy.popthemovie.databinding.FragmentLoginBinding;
 import com.bessy.popthemovie.models.MainActivityViewModel;
 import com.bessy.popthemovie.models.User;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity" ;
     private ActivityMainBinding binding;
+    //private FragmentLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
         //View binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        /*
+        binding = FragmentLoginBinding.inflate(getLayoutInflater());
+         */
         View view = binding.getRoot();
         setContentView(view);
 
-        /* recupera user da id
+        /* recupera user da id */
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com");
-         */
+        /* */
 
         /* registra nuovo user
         User u = new User("prova@gmail.com","password5","nomeP","cognomep");
