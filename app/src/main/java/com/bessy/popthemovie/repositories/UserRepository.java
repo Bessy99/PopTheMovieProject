@@ -63,8 +63,8 @@ public class UserRepository {
     //------------------------------//
 
     //------------------------------> GET USER BY ID
-    public void getUser(MutableLiveData<User> userLiveData, long id){
-        Call<User> call = userService.getUser(id);
+    public void getUser(MutableLiveData<User> userLiveData, String email){
+        Call<User> call = userService.getUser(email);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -74,7 +74,6 @@ public class UserRepository {
                     User user = new User();
 
                     user.setEmail(response.body().getEmail());
-                    user.setId(response.body().getId());
                     user.setNome(response.body().getNome());
                     user.setCognome(response.body().getCognome());
                     user.setPassword(response.body().getPassword());

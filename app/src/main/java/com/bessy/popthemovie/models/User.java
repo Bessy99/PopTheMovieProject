@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class User implements Parcelable, Serializable {
-    private long id;
     private String email;
     private String password;
     private String nome;
@@ -14,8 +13,7 @@ public class User implements Parcelable, Serializable {
 
     public User(){}
 
-    public User(long id, String email, String password, String nome, String cognome) {
-        this.id = id;
+    public User(String email, String password, String nome, String cognome) {
         this.email = email;
         this.password = password;
         this.nome = nome;
@@ -23,7 +21,6 @@ public class User implements Parcelable, Serializable {
     }
 
     protected User(Parcel in) {
-        id = in.readLong();
         email = in.readString();
         password = in.readString();
         nome = in.readString();
@@ -32,7 +29,6 @@ public class User implements Parcelable, Serializable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(id);
         dest.writeString(email);
         dest.writeString(password);
         dest.writeString(nome);
@@ -56,11 +52,6 @@ public class User implements Parcelable, Serializable {
         }
     };
 
-    //-------------------------------------------> Getter e setter
-    public long getId() {
-        return id;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -76,8 +67,6 @@ public class User implements Parcelable, Serializable {
     public String getCognome() {
         return cognome;
     }
-
-    public void setId(Long id ){this.id = id;}
 
     public void setEmail(String email) {
         this.email = email;

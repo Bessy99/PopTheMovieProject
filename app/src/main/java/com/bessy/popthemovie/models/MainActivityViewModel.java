@@ -18,11 +18,11 @@ public class MainActivityViewModel extends ViewModel {
         return movie;
     }
 
-    public MutableLiveData<User> getUser(long id){
+    public MutableLiveData<User> getUser(String email){
         if(user == null){
             user = new MutableLiveData<User>();
         }
-        UserRepository.getInstance().getUser(user, id);
+        UserRepository.getInstance().getUser(user, email);
         return user;
     }
 
