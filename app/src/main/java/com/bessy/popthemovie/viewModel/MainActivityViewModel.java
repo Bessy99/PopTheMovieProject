@@ -1,8 +1,10 @@
-package com.bessy.popthemovie.models;
+package com.bessy.popthemovie.viewModel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.bessy.popthemovie.models.MovieAPIResponse;
+import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.repositories.MovieAPIRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
