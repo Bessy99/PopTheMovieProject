@@ -26,37 +26,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //View binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         /*
         binding = FragmentLoginBinding.inflate(getLayoutInflater());
          */
+
         View view = binding.getRoot();
         setContentView(view);
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         /* recupera user da id */
-
+        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com");
         /* */
 
         /* registra nuovo user
         User u = new User("prova@gmail.com","password5","nomeP","cognomep");
         user = mainActivityViewModel.saveUser(u);
          */
-        /*
-        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com");
-       */
+
+
+
         /* recupera movie con titolo "hunger"
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         MutableLiveData<MovieAPIResponse> movieLiveData = movieViewModel.getMovie("hunger");
         */
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com");
-            }
-        });
+
 
     }
 

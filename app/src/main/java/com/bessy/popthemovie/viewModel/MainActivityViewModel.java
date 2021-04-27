@@ -1,5 +1,7 @@
 package com.bessy.popthemovie.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -23,8 +25,17 @@ public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<User> getUser(String email){
         if(user == null){
             user = new MutableLiveData<User>();
+            Log.d("view model", "entra");
         }
         UserRepository.getInstance().getUser(user, email);
+        return user;
+    }
+
+    public MutableLiveData<User> getUser(){
+        if(user == null){
+            user = new MutableLiveData<User>();
+            Log.d("view model", "entra");
+        }
         return user;
     }
 
@@ -34,11 +45,4 @@ public class MainActivityViewModel extends ViewModel {
         return user;
     }
 
-    //---------------------------------------------> Getter
-    public MutableLiveData<MovieAPIResponse> getMovie() {
-        return movie;
-    }
-    public MutableLiveData<User> getUser() {
-        return user;
-    }
 }

@@ -3,7 +3,7 @@ package com.bessy.popthemovie.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class User implements Parcelable {
@@ -11,12 +11,12 @@ public class User implements Parcelable {
     private String password;
     private String nome;
     private String cognome;
-    private Set<Movie> filmVisti;
-    private Set<Movie> filmDaVedere;
+    private List<Movie> filmVisti;
+    private List<Movie> filmDaVedere;
 
     public User(){}
 
-    public User(String email, String password, String nome, String cognome, Set<Movie> filmVisti, Set<Movie> filmDaVedere) {
+    public User(String email, String password, String nome, String cognome, List<Movie> filmVisti, List<Movie> filmDaVedere) {
         this.email = email;
         this.password = password;
         this.nome = nome;
@@ -30,8 +30,8 @@ public class User implements Parcelable {
         password = in.readString();
         nome = in.readString();
         cognome = in.readString();
-        filmVisti = (Set<Movie>) in.readValue(Set.class.getClassLoader());
-        filmDaVedere = (Set<Movie>) in.readValue(Set.class.getClassLoader());
+        filmVisti = (List<Movie>) in.readValue(List.class.getClassLoader());
+        filmDaVedere = (List<Movie>) in.readValue(List.class.getClassLoader());
     }
 
     @Override
@@ -94,19 +94,19 @@ public class User implements Parcelable {
         this.cognome = cognome;
     }
 
-    public Set<Movie> getFilmVisti() {
+    public List<Movie> getFilmVisti() {
         return filmVisti;
     }
 
-    public void setFilmVisti(Set<Movie> filmVisti) {
+    public void setFilmVisti(List<Movie> filmVisti) {
         this.filmVisti = filmVisti;
     }
 
-    public Set<Movie> getFilmDaVedere() {
+    public List<Movie> getFilmDaVedere() {
         return filmDaVedere;
     }
 
-    public void setFilmDaVedere(Set<Movie> filmDaVedere) {
+    public void setFilmDaVedere(List<Movie> filmDaVedere) {
         this.filmDaVedere = filmDaVedere;
     }
     //--------------------------------------------

@@ -9,8 +9,6 @@ import com.bessy.popthemovie.services.UserService;
 import com.bessy.popthemovie.utils.Constants;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

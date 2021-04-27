@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +24,7 @@ import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.utils.Constants;
 
 
-import java.util.Set;
+import java.util.List;
 
 
 public class FilmDaVedereFragment extends Fragment {
@@ -67,21 +68,15 @@ public class FilmDaVedereFragment extends Fragment {
         recyclerFilmAdapter = new RecyclerFilmAdapter(getActivity(), getMovieSet());
         binding.filmDaVedereRecyclerView.setAdapter(recyclerFilmAdapter);
 
-        final Observer<User> observer = new Observer<User> (){
-            @Override
-            public void onChanged(User user){
-                recyclerFilmAdapter.setData(user.getFilmDaVedere());
-            }
-        };
+        Observer<User> observer = user -> recyclerFilmAdapter.setData(user.getFilmDaVedere());
 
         viewModel.getUser().observe(getViewLifecycleOwner(), observer);
-
     }
 
-    private Set<Movie> getMovieSet(){
-        User user = viewModel.getUser().getValue();
-        if(user != null)
-            return user.getFilmDaVedere();
+    private List<Movie> getMovieSet(){
+        MutableLiveData<User> user = viewModel.getUser();
+        if(user.getValue() != null)
+            return user.getValue().getFilmDaVedere();
         else return null;
     }
 }
