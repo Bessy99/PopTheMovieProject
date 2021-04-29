@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* recupera user da id */
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com");
+        MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com", "passwepd");
         /* */
 
         /* registra nuovo user

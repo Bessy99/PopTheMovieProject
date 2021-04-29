@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bessy.popthemovie.R;
 import com.bessy.popthemovie.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public void bind(Movie movieNext) {
             titoloTextView.setText(movieNext.getTitolo());
             genereTextView.setText(movieNext.getGenere());
-            //posterImageView.set?(movieNext.getPoster());
+            Picasso.get().load(movieNext.getPoster()).into(posterImageView);
         }
     }
 

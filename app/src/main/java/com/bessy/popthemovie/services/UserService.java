@@ -12,7 +12,7 @@ public interface UserService {
 
     // GET USER BY ID
     @GET("user/id")
-    Call<User> getUser(@Query("id") String email);
+    Call<User> getUser(@Query("id") String email, @Query("password") String password);
 
     // SAVE USER
     @POST("user/saveUser")

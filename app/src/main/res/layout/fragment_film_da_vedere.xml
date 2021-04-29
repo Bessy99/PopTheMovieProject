@@ -6,14 +6,8 @@
     tools:context=".FilmDaVedereFragment"
     >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="film da vedere" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filmDaVedereRecyclerView"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

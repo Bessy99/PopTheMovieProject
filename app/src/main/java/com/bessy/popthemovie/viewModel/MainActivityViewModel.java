@@ -11,23 +11,14 @@ import com.bessy.popthemovie.repositories.MovieAPIRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
 public class MainActivityViewModel extends ViewModel {
-    private MutableLiveData<MovieAPIResponse> movie;
     private MutableLiveData<User> user;
 
-    public MutableLiveData<MovieAPIResponse> getMovie(String title){
-        if(movie == null){
-            movie = new MutableLiveData<MovieAPIResponse>();
-        }
-        MovieAPIRepository.getInstance().getMovie(movie, title);
-        return movie;
-    }
 
-    public MutableLiveData<User> getUser(String email){
+    public MutableLiveData<User> getUser(String email, String password){
         if(user == null){
             user = new MutableLiveData<User>();
-            Log.d("view model", "entra");
         }
-        UserRepository.getInstance().getUser(user, email);
+        UserRepository.getInstance().getUser(user, email, password);
         return user;
     }
 

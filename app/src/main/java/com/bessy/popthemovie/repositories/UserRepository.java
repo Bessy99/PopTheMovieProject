@@ -60,9 +60,9 @@ public class UserRepository {
     }
     //------------------------------//
 
-    //------------------------------> GET USER BY ID
-    public void getUser(MutableLiveData<User> userLiveData, String email){
-        Call<User> call = userService.getUser(email);
+    //------------------------------> GET USER BY Email e Password
+    public void getUser(MutableLiveData<User> userLiveData, String email, String password){
+        Call<User> call = userService.getUser(email, password);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
