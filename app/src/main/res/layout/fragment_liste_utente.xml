@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListeUtenteFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewFilmDaVedere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Film da vedere" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaFilmDaVedereRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/textViewFilmVisti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Film visti" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaFilmVistiRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</FrameLayout>
