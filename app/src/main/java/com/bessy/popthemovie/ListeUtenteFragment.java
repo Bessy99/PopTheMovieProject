@@ -63,9 +63,10 @@ public class ListeUtenteFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
-        binding.listaFilmDaVedereRecyclerView.setLayoutManager(layoutManager);
-        binding.listaFilmVistiRecyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManagerVisti = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        binding.listaFilmDaVedereRecyclerView.setLayoutManager(layoutManagerDaVedere);
+        binding.listaFilmVistiRecyclerView.setLayoutManager(layoutManagerVisti);
 
         recyclerFilmDaVedereAdapter = new RecyclerFilmAdapter(getActivity(), getMovieDaVedere());
         binding.listaFilmDaVedereRecyclerView.setAdapter(recyclerFilmDaVedereAdapter);
