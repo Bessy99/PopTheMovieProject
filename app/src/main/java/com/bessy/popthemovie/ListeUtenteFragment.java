@@ -37,7 +37,7 @@ public class ListeUtenteFragment extends Fragment {
 
 
     public ListeUtenteFragment() {
-        // Required empty public constructor
+
     }
 
     public static synchronized ListeUtenteFragment newInstance() {
@@ -62,7 +62,7 @@ public class ListeUtenteFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManagerVisti = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         binding.listaFilmDaVedereRecyclerView.setLayoutManager(layoutManagerDaVedere);

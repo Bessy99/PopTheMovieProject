@@ -2,8 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml"
-    >
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listeUtenteFragment">
 
-
+    <fragment
+        android:id="@+id/listeUtenteFragment"
+        android:name="com.bessy.popthemovie.ListeUtenteFragment"
+        android:label="fragment_liste_utente"
+        tools:layout="@layout/fragment_liste_utente" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.bessy.popthemovie.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/similarMovieFragment"
+        android:name="com.bessy.popthemovie.SimilarMovieFragment"
+        android:label="fragment_similar_movie"
+        tools:layout="@layout/fragment_similar_movie" />
+    <fragment
+        android:id="@+id/outOfTheBoxMovieFragment"
+        android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
+        android:label="fragment_out_of_the_box_movie"
+        tools:layout="@layout/fragment_out_of_the_box_movie" />
 </navigation>

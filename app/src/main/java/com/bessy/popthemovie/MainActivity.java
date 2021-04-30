@@ -1,10 +1,14 @@
 package com.bessy.popthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentNavigator;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +18,7 @@ import android.widget.Button;
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.bessy.popthemovie.models.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
         //View binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        /*
-        binding = FragmentLoginBinding.inflate(getLayoutInflater());
-         */
-
         View view = binding.getRoot();
         setContentView(view);
+
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
+
+
+
 
         /* recupera user da id */
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
