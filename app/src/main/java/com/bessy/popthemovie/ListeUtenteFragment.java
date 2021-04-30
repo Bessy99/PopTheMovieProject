@@ -58,7 +58,7 @@ public class ListeUtenteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        //SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

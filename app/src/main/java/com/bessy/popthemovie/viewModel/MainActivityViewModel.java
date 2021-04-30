@@ -43,6 +43,7 @@ public class MainActivityViewModel extends ViewModel {
         if(movieAPIResponse == null){
             movieAPIResponse = new MutableLiveData<MovieAPIResponse>();
         }
+        MovieAPIResponse movieAPI = new MovieAPIResponse();
         MovieAPIRepository.getInstance().getMovie(movieAPIResponse, title);
         return movieAPIResponse;
     }

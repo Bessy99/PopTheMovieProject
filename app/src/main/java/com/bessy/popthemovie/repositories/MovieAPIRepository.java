@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieAPIRepository {
-    private static final String TAG = "MovieRepository" ;
+    private static final String TAG = "MovieAPIRepository" ;
 
     private static MovieAPIRepository instance;
     private MovieAPIService movieAPIService;
@@ -47,7 +47,6 @@ public class MovieAPIRepository {
                     MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
 
                     movieAPIResponse.setGenre(response.body().getGenre());
-                    Log.d(TAG, movieAPIResponse.getGenre());
                     movieAPIResponse.setImdbID(response.body().getImdbID());
                     movieAPIResponse.setPlot(response.body().getPlot());
                     movieAPIResponse.setPoster(response.body().getPoster());

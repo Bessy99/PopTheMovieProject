@@ -5,44 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".DettaglioMovieFragment">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDettaglio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
-    <!-- Media -->
-        <ImageView
-            android:id="@+id/posterImageViewDettaglio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cropToPadding="true"
-            />
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/titoloTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="title placeholder"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            />
-        <TextView
-            android:id="@+id/genereTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="genere placeholder"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
-            />
-        <TextView
-            android:id="@+id/tramaTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="plot placeholder"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
-            />
-    </LinearLayout>
-
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
