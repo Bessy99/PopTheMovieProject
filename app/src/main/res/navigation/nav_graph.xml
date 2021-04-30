@@ -14,7 +14,11 @@
         android:id="@+id/searchFragment"
         android:name="com.bessy.popthemovie.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_dettaglioMovieFragment"
+            app:destination="@id/dettaglioMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/similarMovieFragment"
         android:name="com.bessy.popthemovie.SimilarMovieFragment"
@@ -25,4 +29,9 @@
         android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
         android:label="fragment_out_of_the_box_movie"
         tools:layout="@layout/fragment_out_of_the_box_movie" />
+    <fragment
+        android:id="@+id/dettaglioMovieFragment"
+        android:name="com.bessy.popthemovie.DettaglioMovieFragment"
+        android:label="fragment_dettaglio_movie"
+        tools:layout="@layout/fragment_dettaglio_movie" />
 </navigation>

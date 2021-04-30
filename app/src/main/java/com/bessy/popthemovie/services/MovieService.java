@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface MovieService {
-    // SAVE USER
+    // ADD NEW FILM
     @POST("film/addFilm")
     Call<User> addMovie(@Body Movie movie,
                         @Body User user,

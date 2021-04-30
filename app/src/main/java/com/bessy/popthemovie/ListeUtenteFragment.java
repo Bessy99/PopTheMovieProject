@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bessy.popthemovie.adapters.RecyclerFilmAdapter;
-import com.bessy.popthemovie.databinding.FragmentFilmDaVedereBinding;
 import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.User;
