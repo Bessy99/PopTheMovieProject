@@ -60,21 +60,16 @@ public class DettaglioMovieFragment extends Fragment {
         LinearLayoutManager layoutManagerDettaglio = new LinearLayoutManager(getActivity());
         binding.recyclerDettaglio.setLayoutManager(layoutManagerDettaglio);
 
-        List<MovieAPIResponse> movie = new ArrayList<>();
-        movie.add(viewModel.getLastMovie().getValue());
-
-        recyclerMovieAPIResponse = new RecyclerMovieAPIResponse(getActivity(),movie);
-        binding.recyclerDettaglio.setAdapter(recyclerMovieAPIResponse);
-
-        recyclerMovieAPIResponse.setData(movie);
-
-        //Observer<MovieAPIResponse> observerMovie = movieApi -> recyclerMovieAPIResponse.setData(movie);
         Observer<MovieAPIResponse> observerMovie = new Observer<MovieAPIResponse>() {
             @Override
             public void onChanged(MovieAPIResponse movieAPIResponse) {
-                List<MovieAPIResponse> movie = new ArrayList<>();
-                movie.add(movieAPIResponse);
-                recyclerMovieAPIResponse.setData(movie);
+                if(movieAPIResponse!=null) {
+                    List<MovieAPIResponse> movie = new ArrayList<>();
+                    movie.add(movieAPIResponse);
+                    recyclerMovieAPIResponse = new RecyclerMovieAPIResponse(getActivity(),movie);
+                    binding.recyclerDettaglio.setAdapter(recyclerMovieAPIResponse);
+                    recyclerMovieAPIResponse.setData(movie);
+                }
             }
         };
 

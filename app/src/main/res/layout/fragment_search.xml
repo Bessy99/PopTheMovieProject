@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SearchFragment">
-
 
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:context=".SearchFragment">
 
             <SearchView
                 android:id="@+id/searchView"
@@ -22,12 +19,20 @@
                 android:layout_height="wrap_content"
                 android:name="com.bessy.popthemovie.DettaglioMovieFragment"
                 />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/addVistiButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="aggiungi alla lista dei film visti"/>
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addVistiButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="add a film visti"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addDaVedereButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="add a film da vedere"/>
+            </LinearLayout>
 
         </LinearLayout>
-
-</FrameLayout>

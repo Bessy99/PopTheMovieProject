@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         /* recupera movie con titolo "hunger"
-        MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);*/
+        MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("pop");
-        /* */
+         */
 
 
     }

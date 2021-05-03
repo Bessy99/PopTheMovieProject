@@ -45,12 +45,14 @@ public class MainActivityViewModel extends ViewModel {
         if(movieAPIResponse == null){
             movieAPIResponse = new MutableLiveData<MovieAPIResponse>();
         }
-        MovieAPIResponse movieAPI = new MovieAPIResponse();
         MovieAPIRepository.getInstance().getMovie(movieAPIResponse, title);
         return movieAPIResponse;
     }
 
     public MutableLiveData<MovieAPIResponse> getLastMovie(){
+        if(movieAPIResponse == null){
+            movieAPIResponse = new MutableLiveData<MovieAPIResponse>();
+        }
         return movieAPIResponse;
     }
 
@@ -65,7 +67,7 @@ public class MainActivityViewModel extends ViewModel {
     public void AddFilmDaVedere(MovieAPIResponse movieToAdd){
         Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
         MovieRepository.getInstance().saveMovie(movie, user.getValue().getEmail(),"daVedere");
-        user.getValue().getFilmVisti().add(movie);
+        user.getValue().getFilmDaVedere().add(movie);
     }
 
 

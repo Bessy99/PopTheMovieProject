@@ -74,12 +74,17 @@ public class SearchFragment extends Fragment {
         addVistiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //viewModel.AddFilmVisto(viewModel.getLastMovie().getValue());
-                viewModel.AddFilmDaVedere(viewModel.getLastMovie().getValue());
+                viewModel.AddFilmVisto(viewModel.getLastMovie().getValue());
             }
         });
 
-
+        Button addDaVedereButton = binding.addDaVedereButton;
+        addDaVedereButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.AddFilmDaVedere(viewModel.getLastMovie().getValue());
+            }
+        });
 
 
     }
