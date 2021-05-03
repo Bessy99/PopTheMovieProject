@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.bessy.popthemovie.models.Movie;
+import com.bessy.popthemovie.models.MovieAPIResponse;
+import com.bessy.popthemovie.models.MovieAddRequest;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.MovieService;
 import com.bessy.popthemovie.services.UserService;
@@ -39,18 +41,21 @@ public class MovieRepository {
 
     //------------------------------> SAVE MOVIE
     // modalità: aggiungerlo alla lista dei film da vedere oppure alla lista dei film visti
-    public void saveMovie(Movie movieToSave, User userAttuale, String modalita){
-        Call<User> call = movieService.addMovie(movieToSave, userAttuale, modalita);
+    public void saveMovie(Movie movieToSave, String email, String modalita){
+        MovieAddRequest movieAddRequest = new MovieAddRequest(movieToSave,modalita,email);
+        Call<User> call = movieService.addMovie(movieAddRequest);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
+                /*
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
                 }
                 else if(response.errorBody() != null){
                     Log.d(TAG, "errore1"+response.code());
                 }
+                 */
+                Log.d(TAG, "richiesta fatta");
             }
 
             @Override
@@ -58,6 +63,10 @@ public class MovieRepository {
                 Log.d(TAG, "errore2: "+t.getMessage());
             }
         });
+    }
+
+    public Movie createMovie(MovieAPIResponse movieToAdd){
+        return new Movie(movieToAdd.getImdbID(), movieToAdd.getTitle(), movieToAdd.getGenre(), movieToAdd.getPoster());
     }
     //------------------------------//
 }

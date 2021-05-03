@@ -22,6 +22,11 @@
                 android:layout_height="wrap_content"
                 android:name="com.bessy.popthemovie.DettaglioMovieFragment"
                 />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addVistiButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="aggiungi alla lista dei film visti"/>
 
         </LinearLayout>
 

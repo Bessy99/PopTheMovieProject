@@ -5,9 +5,11 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.repositories.MovieAPIRepository;
+import com.bessy.popthemovie.repositories.MovieRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
 public class MainActivityViewModel extends ViewModel {
@@ -53,4 +55,18 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     //---------------------
+    //---------------------> Aggiungere movie alle liste dello User
+    public void AddFilmVisto(MovieAPIResponse movieToAdd){
+        Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
+        MovieRepository.getInstance().saveMovie(movie, user.getValue().getEmail(),"visti");
+        user.getValue().getFilmVisti().add(movie);
+    }
+
+    public void AddFilmDaVedere(MovieAPIResponse movieToAdd){
+        Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
+        MovieRepository.getInstance().saveMovie(movie, user.getValue().getEmail(),"daVedere");
+        user.getValue().getFilmVisti().add(movie);
+    }
+
+
 }

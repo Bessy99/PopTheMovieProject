@@ -19,10 +19,12 @@ import android.view.ViewGroup;
 import com.bessy.popthemovie.adapters.RecyclerFilmAdapter;
 import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
 import com.bessy.popthemovie.models.Movie;
+import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListeUtenteFragment extends Fragment {
@@ -73,8 +75,23 @@ public class ListeUtenteFragment extends Fragment {
         recyclerFilmVistiAdapter = new RecyclerFilmAdapter(getActivity(), getMovieVisti());
         binding.listaFilmVistiRecyclerView.setAdapter(recyclerFilmVistiAdapter);
 
-        Observer<User> observerDaVedere = user -> recyclerFilmDaVedereAdapter.setData(user.getFilmDaVedere());
-        Observer<User> observerVisti = user -> recyclerFilmVistiAdapter.setData(user.getFilmVisti());
+        /*
+        recyclerFilmDaVedereAdapter.setData(getMovieDaVedere());
+        recyclerFilmVistiAdapter.setData(getMovieVisti());
+         */
+        Observer<User> observerVisti = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                recyclerFilmVistiAdapter.setData(user.getFilmVisti());
+            }
+        };
+
+        Observer<User> observerDaVedere = new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                recyclerFilmDaVedereAdapter.setData(user.getFilmDaVedere());
+            }
+        };
 
         viewModel.getUser().observe(getViewLifecycleOwner(), observerDaVedere);
         viewModel.getUser().observe(getViewLifecycleOwner(), observerVisti);

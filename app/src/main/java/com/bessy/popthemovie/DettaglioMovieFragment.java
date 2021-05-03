@@ -66,9 +66,19 @@ public class DettaglioMovieFragment extends Fragment {
         recyclerMovieAPIResponse = new RecyclerMovieAPIResponse(getActivity(),movie);
         binding.recyclerDettaglio.setAdapter(recyclerMovieAPIResponse);
 
-        Observer<MovieAPIResponse> observerMovie = movieApi -> recyclerMovieAPIResponse.setData(movie);
-        MutableLiveData<MovieAPIResponse> movieLiveData = viewModel.getMovieByTitle("aladin");
+        recyclerMovieAPIResponse.setData(movie);
 
+        //Observer<MovieAPIResponse> observerMovie = movieApi -> recyclerMovieAPIResponse.setData(movie);
+        Observer<MovieAPIResponse> observerMovie = new Observer<MovieAPIResponse>() {
+            @Override
+            public void onChanged(MovieAPIResponse movieAPIResponse) {
+                List<MovieAPIResponse> movie = new ArrayList<>();
+                movie.add(movieAPIResponse);
+                recyclerMovieAPIResponse.setData(movie);
+            }
+        };
+
+        viewModel.getLastMovie().observe(getViewLifecycleOwner(),observerMovie);
     }
 
 }

@@ -45,19 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
         /* recupera user da id */
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser("c.b@gmail.com", "passwepd");
+        MutableLiveData<User> user = mainActivityViewModel.getUser("pop@gmail.com", "passd5");
         /* */
 
         /* registra nuovo user
-        User u = new User("prova@gmail.com","password5","nomeP","cognomep");
+        User u = new User("pop@gmail.com","passd5","nompo","cognop", null, null);
         user = mainActivityViewModel.saveUser(u);
-         */
+        */
 
 
 
         /* recupera movie con titolo "hunger"
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);*/
-        MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("after");
+        MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("pop");
         /* */
 
 
