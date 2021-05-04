@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.bessy.popthemovie.models.AffinitaUser;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
@@ -12,9 +13,12 @@ import com.bessy.popthemovie.repositories.MovieAPIRepository;
 import com.bessy.popthemovie.repositories.MovieRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
+import java.util.List;
+
 public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> user;
     private MutableLiveData<MovieAPIResponse> movieAPIResponse;
+    private MutableLiveData<List<AffinitaUser>> listaAffinitaUser;
 
     //------------------> User
     public MutableLiveData<User> getUser(String email, String password){
@@ -56,7 +60,20 @@ public class MainActivityViewModel extends ViewModel {
         return movieAPIResponse;
     }
 
-    //---------------------
+    //---------------------//
+
+    //--------------------> Affinita user
+    public MutableLiveData<List<AffinitaUser>> getListaAffinitaUser(){
+        if(listaAffinitaUser == null){
+            listaAffinitaUser = new MutableLiveData<List<AffinitaUser>>();
+            User u = getUser().getValue();
+            if(u != null)
+                MovieRepository.getInstance().getListaAffinita(listaAffinitaUser, u.getEmail());
+        }
+        return listaAffinitaUser;
+    }
+
+    //--------------------//
     //---------------------> Aggiungere movie alle liste dello User
     public void AddFilmVisto(MovieAPIResponse movieToAdd){
         Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
@@ -69,6 +86,6 @@ public class MainActivityViewModel extends ViewModel {
         MovieRepository.getInstance().saveMovie(movie, user.getValue().getEmail(),"daVedere");
         user.getValue().getFilmDaVedere().add(movie);
     }
-
+    //----------------------//
 
 }

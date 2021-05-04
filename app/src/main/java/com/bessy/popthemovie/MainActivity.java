@@ -16,10 +16,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
+import com.bessy.popthemovie.models.AffinitaUser;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.bessy.popthemovie.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         User u = new User("pop@gmail.com","passd5","nompo","cognop", null, null);
         user = mainActivityViewModel.saveUser(u);
         */
-
-
 
         /* recupera movie con titolo "hunger"
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.SearchView;
 import com.bessy.popthemovie.adapters.RecyclerMovieAPIResponse;
 import com.bessy.popthemovie.databinding.FragmentDettaglioMovieBinding;
 import com.bessy.popthemovie.databinding.FragmentSearchBinding;
+import com.bessy.popthemovie.models.AffinitaUser;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 
@@ -55,7 +57,6 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-
         SearchView searchView = binding.searchView;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

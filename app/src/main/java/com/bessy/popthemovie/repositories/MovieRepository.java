@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.bessy.popthemovie.models.AffinitaUser;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.MovieAddRequest;
@@ -13,6 +14,9 @@ import com.bessy.popthemovie.services.MovieService;
 import com.bessy.popthemovie.services.UserService;
 import com.bessy.popthemovie.utils.Constants;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,15 +51,13 @@ public class MovieRepository {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                /*
+
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
                 }
                 else if(response.errorBody() != null){
                     Log.d(TAG, "errore1"+response.code());
                 }
-                 */
-                Log.d(TAG, "richiesta fatta");
             }
 
             @Override
@@ -69,4 +71,37 @@ public class MovieRepository {
         return new Movie(movieToAdd.getImdbID(), movieToAdd.getTitle(), movieToAdd.getGenre(), movieToAdd.getPoster());
     }
     //------------------------------//
+    //------------------------------> GET LISTA AFFINITA USER
+    public void getListaAffinita(MutableLiveData<List<AffinitaUser>> affinitaUserLiveData, String email){
+        Call<List<AffinitaUser>> call = movieService.getListaAffinita(email);
+        call.enqueue(new Callback<List<AffinitaUser>>() {
+            @Override
+            public void onResponse(Call<List<AffinitaUser>> call, Response<List<AffinitaUser>> response) {
+                List<AffinitaUser> listaAffinita;
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                    List<AffinitaUser> responseList = response.body();
+                    listaAffinita = new ArrayList<>();
+                    for(int i = 0; i<responseList.size(); i++){
+                        AffinitaUser affinitaUser = new AffinitaUser();
+                        affinitaUser.setEmail(responseList.get(i).getEmail());
+                        affinitaUser.setNumFilmInComune(responseList.get(i).getNumFilmInComune());
+                        listaAffinita.add(affinitaUser);
+                    }
+                    affinitaUserLiveData.postValue(listaAffinita);
+
+                }
+                else if(response.errorBody() != null){
+                    Log.d(TAG, "errore1"+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<AffinitaUser>> call, Throwable t) {
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+    //-------------------------------//
+
 }

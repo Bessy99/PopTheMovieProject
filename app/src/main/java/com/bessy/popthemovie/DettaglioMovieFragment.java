@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.bessy.popthemovie.adapters.RecyclerMovieAPIResponse;
 import com.bessy.popthemovie.databinding.FragmentDettaglioMovieBinding;
+import com.bessy.popthemovie.models.AffinitaUser;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
