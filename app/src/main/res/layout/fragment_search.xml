@@ -22,17 +22,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="100">
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addVistiButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="add a film visti"/>
+                    android:text="Visto"
+                    android:layout_margin="8dp"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addDaVedereButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="add a film da vedere"/>
+                    android:text="Da vedere"
+                    android:layout_margin="8dp"/>
             </LinearLayout>
 
         </LinearLayout>
