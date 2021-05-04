@@ -69,6 +69,8 @@ public class RecyclerMovieAPIResponse extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public int getItemCount() {
-        return movie.size();
+        if(movie == null )
+            return 0;
+        else return movie.size();
     }
 }

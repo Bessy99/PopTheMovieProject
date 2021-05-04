@@ -59,6 +59,8 @@ public class DettaglioMovieFragment extends Fragment {
 
         LinearLayoutManager layoutManagerDettaglio = new LinearLayoutManager(getActivity());
         binding.recyclerDettaglio.setLayoutManager(layoutManagerDettaglio);
+        recyclerMovieAPIResponse = new RecyclerMovieAPIResponse(getActivity(),null);
+        binding.recyclerDettaglio.setAdapter(recyclerMovieAPIResponse);
 
         Observer<MovieAPIResponse> observerMovie = new Observer<MovieAPIResponse>() {
             @Override
@@ -66,8 +68,6 @@ public class DettaglioMovieFragment extends Fragment {
                 if(movieAPIResponse!=null) {
                     List<MovieAPIResponse> movie = new ArrayList<>();
                     movie.add(movieAPIResponse);
-                    recyclerMovieAPIResponse = new RecyclerMovieAPIResponse(getActivity(),movie);
-                    binding.recyclerDettaglio.setAdapter(recyclerMovieAPIResponse);
                     recyclerMovieAPIResponse.setData(movie);
                 }
             }

@@ -60,8 +60,6 @@ public class ListeUtenteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
@@ -69,16 +67,12 @@ public class ListeUtenteFragment extends Fragment {
         binding.listaFilmDaVedereRecyclerView.setLayoutManager(layoutManagerDaVedere);
         binding.listaFilmVistiRecyclerView.setLayoutManager(layoutManagerVisti);
 
-        recyclerFilmDaVedereAdapter = new RecyclerFilmAdapter(getActivity(), getMovieDaVedere());
+        recyclerFilmDaVedereAdapter = new RecyclerFilmAdapter(getActivity(), null);
         binding.listaFilmDaVedereRecyclerView.setAdapter(recyclerFilmDaVedereAdapter);
 
-        recyclerFilmVistiAdapter = new RecyclerFilmAdapter(getActivity(), getMovieVisti());
+        recyclerFilmVistiAdapter = new RecyclerFilmAdapter(getActivity(), null);
         binding.listaFilmVistiRecyclerView.setAdapter(recyclerFilmVistiAdapter);
 
-        /*
-        recyclerFilmDaVedereAdapter.setData(getMovieDaVedere());
-        recyclerFilmVistiAdapter.setData(getMovieVisti());
-         */
         Observer<User> observerVisti = new Observer<User>() {
             @Override
             public void onChanged(User user) {
@@ -95,19 +89,5 @@ public class ListeUtenteFragment extends Fragment {
 
         viewModel.getUser().observe(getViewLifecycleOwner(), observerDaVedere);
         viewModel.getUser().observe(getViewLifecycleOwner(), observerVisti);
-    }
-
-    private List<Movie> getMovieDaVedere(){
-        MutableLiveData<User> user = viewModel.getUser();
-        if(user.getValue() != null)
-            return user.getValue().getFilmDaVedere();
-        else return null;
-    }
-
-    private List<Movie> getMovieVisti(){
-        MutableLiveData<User> user = viewModel.getUser();
-        if(user.getValue() != null)
-            return user.getValue().getFilmVisti();
-        else return null;
     }
 }

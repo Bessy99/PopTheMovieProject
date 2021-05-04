@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ListeUtenteFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="100">
 
@@ -37,7 +37,8 @@
                 android:id="@+id/textViewFilmVisti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Film visti" />
+                android:text="Film visti"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listaFilmVistiRecyclerView"
