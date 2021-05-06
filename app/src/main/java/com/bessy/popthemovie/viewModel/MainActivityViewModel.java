@@ -5,8 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.bessy.popthemovie.models.AffinitaUser;
-import com.bessy.popthemovie.models.FilmMaiVistoUtente;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
@@ -19,11 +17,10 @@ import java.util.List;
 public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> user;
     private MutableLiveData<MovieAPIResponse> movieAPIResponse;
-    private MutableLiveData<List<AffinitaUser>> listaAffinitaUser;
-    private MutableLiveData<List<FilmMaiVistoUtente>> listaFilmMaiVisti;
     private MutableLiveData<List<Movie>> classificaFilm;
 
     //------------------> User
+
     public MutableLiveData<User> getUser(String email, String password){
         if(user == null){
             user = new MutableLiveData<User>();
@@ -73,33 +70,8 @@ public class MainActivityViewModel extends ViewModel {
 
     //---------------------//
 
-    //--------------------> Affinita user
-    public MutableLiveData<List<AffinitaUser>> getListaAffinitaUser(){
-        if(listaAffinitaUser == null){
-            listaAffinitaUser = new MutableLiveData<List<AffinitaUser>>();
-            if(getUser() != null && getUser().getValue()!=null)
-                MovieRepository.getInstance().getListaAffinita(listaAffinitaUser, getUser().getValue().getEmail());
-        }
-        return listaAffinitaUser;
-    }
-
-    //--------------------//
-
-    //--------------------> Film mai visti
-    public MutableLiveData<List<FilmMaiVistoUtente>> getFilmMaiVisti(){
-        if(listaFilmMaiVisti == null){
-            listaFilmMaiVisti = new MutableLiveData<List<FilmMaiVistoUtente>>();
-            if(getUser() != null && getUser().getValue()!=null) {
-                MovieRepository.getInstance().getFilmMaiVisto(listaFilmMaiVisti, getUser().getValue().getEmail());
-            }
-            else Log.d("mainViewModel", "user vuoto");
-        }
-        return listaFilmMaiVisti;
-    }
-
-    //--------------------//
-
     //--------------------> Classifica film
+
     public MutableLiveData<List<Movie>> getClassificaFilm(){
         if(classificaFilm == null){
             classificaFilm = new MutableLiveData<List<Movie>>();
@@ -114,6 +86,7 @@ public class MainActivityViewModel extends ViewModel {
     //--------------------//
 
     //---------------------> Aggiungere movie alle liste dello User
+
     public void AddFilmVisto(MovieAPIResponse movieToAdd){
         Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
         MovieRepository.getInstance().saveMovie(movie, getUser().getValue().getEmail(),"visti");
@@ -125,6 +98,7 @@ public class MainActivityViewModel extends ViewModel {
         MovieRepository.getInstance().saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
         getUser().getValue().getFilmDaVedere().add(movie);
     }
+
     //----------------------//
 
 }

@@ -61,7 +61,6 @@ public class ListeUtenteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManagerVisti = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         binding.listaFilmDaVedereRecyclerView.setLayoutManager(layoutManagerDaVedere);

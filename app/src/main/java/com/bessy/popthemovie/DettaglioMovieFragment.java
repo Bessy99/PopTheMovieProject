@@ -5,25 +5,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bessy.popthemovie.adapters.RecyclerMovieAPIResponse;
 import com.bessy.popthemovie.databinding.FragmentDettaglioMovieBinding;
-import com.bessy.popthemovie.models.AffinitaUser;
-import com.bessy.popthemovie.models.FilmMaiVistoUtente;
-import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
-import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

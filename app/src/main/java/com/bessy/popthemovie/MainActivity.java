@@ -1,28 +1,18 @@
 package com.bessy.popthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.FragmentNavigator;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
-import com.bessy.popthemovie.models.AffinitaUser;
-import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.bessy.popthemovie.models.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

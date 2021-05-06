@@ -5,16 +5,12 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.bessy.popthemovie.models.AffinitaUser;
-import com.bessy.popthemovie.models.FilmMaiVistoUtente;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.MovieAddRequest;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.MovieService;
-import com.bessy.popthemovie.services.UserService;
 import com.bessy.popthemovie.utils.Constants;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,71 +68,8 @@ public class MovieRepository {
         return new Movie(movieToAdd.getImdbID(), movieToAdd.getTitle(), movieToAdd.getGenre(), movieToAdd.getPoster());
     }
     //------------------------------//
-    //------------------------------> GET LISTA AFFINITA USER
-    public void getListaAffinita(MutableLiveData<List<AffinitaUser>> affinitaUserLiveData, String email){
-        Call<List<AffinitaUser>> call = movieService.getListaAffinita(email);
-        call.enqueue(new Callback<List<AffinitaUser>>() {
-            @Override
-            public void onResponse(Call<List<AffinitaUser>> call, Response<List<AffinitaUser>> response) {
-                List<AffinitaUser> listaAffinita;
-                if(response.isSuccessful() && response.body()!= null) {
-                    Log.d(TAG, "risposta ok");
-                    List<AffinitaUser> responseList = response.body();
-                    listaAffinita = new ArrayList<>();
-                    for(int i = 0; i<responseList.size(); i++){
-                        AffinitaUser affinitaUser = new AffinitaUser();
-                        affinitaUser.setEmail(responseList.get(i).getEmail());
-                        affinitaUser.setNumFilmInComune(responseList.get(i).getNumFilmInComune());
-                        listaAffinita.add(affinitaUser);
-                    }
-                    affinitaUserLiveData.postValue(listaAffinita);
 
-                }
-                else if(response.errorBody() != null){
-                    Log.d(TAG, "errore1"+response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<AffinitaUser>> call, Throwable t) {
-                Log.d(TAG, "errore2: "+t.getMessage());
-            }
-        });
-    }
-    //-------------------------------//
-    //------------------------------> GET FILM MAI VISTO
-    public void getFilmMaiVisto(MutableLiveData<List<FilmMaiVistoUtente>> filmMaiVistiLiveData, String email){
-        Call<List<FilmMaiVistoUtente>> call = movieService.getFilmMaiVisti(email);
-        call.enqueue(new Callback<List<FilmMaiVistoUtente>>() {
-            @Override
-            public void onResponse(Call<List<FilmMaiVistoUtente>> call, Response<List<FilmMaiVistoUtente>> response) {
-                List<FilmMaiVistoUtente> listaFilmMaiVisti;
-                if(response.isSuccessful() && response.body()!= null) {
-                    Log.d(TAG, "risposta ok");
-                    List<FilmMaiVistoUtente> responseList = response.body();
-                    listaFilmMaiVisti = new ArrayList<>();
-                    for(int i = 0; i<responseList.size(); i++){
-                        listaFilmMaiVisti.add(new FilmMaiVistoUtente(responseList.get(i).getEmail(),responseList.get(i).getFilm_id()));
-                    }
-                    Log.d(TAG, listaFilmMaiVisti.get(0).getEmail());
-
-                    filmMaiVistiLiveData.postValue(listaFilmMaiVisti);
-
-                }
-                else if(response.errorBody() != null){
-                    Log.d(TAG, "errore1"+response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<FilmMaiVistoUtente>> call, Throwable t) {
-                Log.d(TAG, "errore2: "+t.getMessage());
-            }
-        });
-    }
-    //-------------------------------//
-
-        //------------------------------> GET CLASSIFICA FILM
+    //------------------------------> GET CLASSIFICA FILM
     public void getClassificaFilm(MutableLiveData<List<Movie>> classificaFilmLiveData, String email){
         Call<List<Movie>> call = movieService.getClassificaFilm(email);
         call.enqueue(new Callback<List<Movie>>() {

@@ -46,6 +46,14 @@ public class OutOfTheBoxMovieFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentOutOfTheBoxMovieBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         viewModel.getClassificaFilm();
 
@@ -60,15 +68,6 @@ public class OutOfTheBoxMovieFragment extends Fragment {
             }
         };
         viewModel.getClassificaFilm().observe(getViewLifecycleOwner(), classificaObserver);
-
-        // Inflate the layout for this fragment
-        binding = FragmentOutOfTheBoxMovieBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
 
     }
