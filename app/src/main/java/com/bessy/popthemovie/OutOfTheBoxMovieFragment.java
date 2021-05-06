@@ -63,7 +63,6 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-    /*
         viewModel.getClassificaFilm();
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {
             @Override
@@ -80,8 +79,6 @@ public class OutOfTheBoxMovieFragment extends Fragment {
         };
 
         viewModel.getClassificaFilm().observe(getViewLifecycleOwner(),observerClassificaFilm);
-
-     */
 
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         sd = new ShakeDetector(new ShakeDetector.Listener() {
