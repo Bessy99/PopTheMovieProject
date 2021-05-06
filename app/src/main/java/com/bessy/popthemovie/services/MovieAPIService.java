@@ -13,4 +13,8 @@ public interface MovieAPIService {
     @GET("/")
     Call<MovieAPIResponse> getMovie(@Query("apikey") String apikey,
                                     @Query("t") String title);
+
+    @GET("/")
+    Call<MovieAPIResponse> getMovieById(@Query("apikey") String apikey,
+                                    @Query("i") String id);
 }

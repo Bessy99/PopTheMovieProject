@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("lost");
         */
-
-
     }
 
 }

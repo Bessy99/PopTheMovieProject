@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.bessy.popthemovie.models.AffinitaUser;
+import com.bessy.popthemovie.models.FilmMaiVistoUtente;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.MovieAddRequest;
@@ -98,6 +99,37 @@ public class MovieRepository {
 
             @Override
             public void onFailure(Call<List<AffinitaUser>> call, Throwable t) {
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+    //-------------------------------//
+    //------------------------------> GET FILM MAI VISTO
+    public void getFilmMaiVisto(MutableLiveData<List<FilmMaiVistoUtente>> filmMaiVistiLiveData, String email){
+        Call<List<FilmMaiVistoUtente>> call = movieService.getFilmMaiVisti(email);
+        call.enqueue(new Callback<List<FilmMaiVistoUtente>>() {
+            @Override
+            public void onResponse(Call<List<FilmMaiVistoUtente>> call, Response<List<FilmMaiVistoUtente>> response) {
+                List<FilmMaiVistoUtente> listaFilmMaiVisti;
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                    List<FilmMaiVistoUtente> responseList = response.body();
+                    listaFilmMaiVisti = new ArrayList<>();
+                    for(int i = 0; i<responseList.size(); i++){
+                        listaFilmMaiVisti.add(new FilmMaiVistoUtente(responseList.get(i).getEmail(),responseList.get(i).getFilm_id()));
+                    }
+                    Log.d(TAG, listaFilmMaiVisti.get(0).getEmail());
+
+                    filmMaiVistiLiveData.postValue(listaFilmMaiVisti);
+
+                }
+                else if(response.errorBody() != null){
+                    Log.d(TAG, "errore1"+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<FilmMaiVistoUtente>> call, Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
             }
         });

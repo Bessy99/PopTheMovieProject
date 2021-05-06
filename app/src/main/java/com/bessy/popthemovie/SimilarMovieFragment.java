@@ -1,64 +1,140 @@
 package com.bessy.popthemovie;
 
+import android.content.MutableContextWrapper;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SimilarMovieFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bessy.popthemovie.databinding.FragmentDettaglioMovieBinding;
+import com.bessy.popthemovie.databinding.FragmentSimilarMovieBinding;
+import com.bessy.popthemovie.models.FilmMaiVistoUtente;
+import com.bessy.popthemovie.models.Movie;
+import com.bessy.popthemovie.models.MovieAPIResponse;
+import com.bessy.popthemovie.viewModel.MainActivityViewModel;
+import com.squareup.picasso.Picasso;
+import com.squareup.seismic.ShakeDetector;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import static android.content.Context.SENSOR_SERVICE;
+import static android.view.Gravity.CENTER;
+
 public class SimilarMovieFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = "SimilarMovieFragment";
+    private static SimilarMovieFragment instance;
+    private FragmentSimilarMovieBinding binding;
+    private SensorManager sm;
+    private ShakeDetector sd;
+    private MainActivityViewModel viewModel;
+    List<FilmMaiVistoUtente> listaFilmMaiVisti;
+    int position;
 
     public SimilarMovieFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SimilarMovieFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SimilarMovieFragment newInstance(String param1, String param2) {
-        SimilarMovieFragment fragment = new SimilarMovieFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public static synchronized SimilarMovieFragment newInstance() {
+        if(instance == null){
+            instance = new SimilarMovieFragment();
         }
+        return instance;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_similar_movie, container, false);
+        binding = FragmentSimilarMovieBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+        viewModel.getFilmMaiVisti();
+        position = 0;
+        sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
+        sd = new ShakeDetector(new ShakeDetector.Listener() {
+            @Override
+            public void hearShake() {
+                Log.d(TAG, "shakee!");
+                if(position<listaFilmMaiVisti.size())
+                {
+                  viewModel.getMovieById(listaFilmMaiVisti.get(position).getFilm_id());
+                  position ++;
+                }
+                else
+                    binding.titoloTextViewSimilar.setText("i film suggeriti sono terminati");
+
+            }
+        });
+        Observer<List<FilmMaiVistoUtente>> observerFilmMaiVisti = new Observer<List<FilmMaiVistoUtente>>() {
+            @Override
+            public void onChanged(List<FilmMaiVistoUtente> filmMaiVistiList) {
+                if(filmMaiVistiList!=null) {
+                        listaFilmMaiVisti = filmMaiVistiList;
+                        Log.d(TAG, listaFilmMaiVisti.get(position).getEmail());
+                    }
+                    else {
+                        Log.d(TAG, "niente");
+                        listaFilmMaiVisti = new ArrayList<FilmMaiVistoUtente>();
+                        listaFilmMaiVisti.add(new FilmMaiVistoUtente());
+                    }
+                }
+        };
+
+        viewModel.getFilmMaiVisti().observe(getViewLifecycleOwner(),observerFilmMaiVisti);
+
+        Observer<MovieAPIResponse> observeMovieAnswer = new Observer<MovieAPIResponse>() {
+            @Override
+            public void onChanged(MovieAPIResponse movie) {
+                if(movie != null){
+                    binding.titoloTextViewSimilar.setText(movie.getTitle());
+                    binding.genereTextViewSimilar.setText(movie.getGenre());
+                    binding.tramaTextViewSimilar.setText(movie.getPlot());
+                    Picasso.get().load(movie.getPoster()).into(binding.posterImageViewSimilar);
+                }
+                else {
+                    position ++;
+                    if(position+1 < listaFilmMaiVisti.size())
+                        viewModel.getMovieById(listaFilmMaiVisti.get(position).getFilm_id());
+                }
+            }
+        };
+
+        viewModel.getLastMovie().observe(getViewLifecycleOwner(),observeMovieAnswer);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sd.start(sm);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sd.stop();
+    }
+
 }

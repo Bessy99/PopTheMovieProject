@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SimilarMovieFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".SimilarMovieFragment">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMovieSimilar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- Media -->
+                <ImageView
+                    android:id="@+id/posterImageViewSimilar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    />
+
+                <TextView
+                    android:id="@+id/titoloTextViewSimilar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="title placeholder"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+                <TextView
+                    android:id="@+id/genereTextViewSimilar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="genere placeholder"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+                <TextView
+                    android:id="@+id/tramaTextViewSimilar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="plot placeholder"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addVistiButtonSimilar"
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+                android:text="Visto"
+                android:layout_margin="8dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addDaVedereButtonSimilar"
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+                android:text="Da vedere"
+                android:layout_margin="8dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextButtonSimilar"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="wrap_content"
+                android:text="Prossimo suggerimento"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+    </LinearLayout>

@@ -1,6 +1,7 @@
 package com.bessy.popthemovie.services;
 
 import com.bessy.popthemovie.models.AffinitaUser;
+import com.bessy.popthemovie.models.FilmMaiVistoUtente;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAddRequest;
 import com.bessy.popthemovie.models.User;
@@ -21,8 +22,12 @@ public interface MovieService {
     Call<User> addMovie(@Body MovieAddRequest movie);
 
     // GET LISTA AFFINITA
-    @GET("film/filmMaiVisti")
+    @GET("film/classificaAffinita")
     Call<List<AffinitaUser>> getListaAffinita(@Query("id") String email);
+
+    // GET FILM MAI VISTI
+    @GET("film/filmMaiVisti")
+    Call<List<FilmMaiVistoUtente>> getFilmMaiVisti(@Query("id") String email);
 
 
 }

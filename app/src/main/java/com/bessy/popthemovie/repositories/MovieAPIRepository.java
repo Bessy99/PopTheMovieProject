@@ -78,4 +78,46 @@ public class MovieAPIRepository {
         });
     }
 
+    public void getMovieById(MutableLiveData<MovieAPIResponse> movie, String id){
+        Call<MovieAPIResponse> call = movieAPIService.getMovieById(Constants.OMDB_API_KEY, id);
+        call.enqueue(new Callback<MovieAPIResponse>() {
+            @Override
+            public void onResponse(Call<MovieAPIResponse> call, Response<MovieAPIResponse> response) {
+
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                    MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
+
+                    movieAPIResponse.setGenre(response.body().getGenre());
+                    movieAPIResponse.setImdbID(response.body().getImdbID());
+                    movieAPIResponse.setPlot(response.body().getPlot());
+                    movieAPIResponse.setPoster(response.body().getPoster());
+                    movieAPIResponse.setTitle(response.body().getTitle());
+                    movieAPIResponse.setResponse(response.isSuccessful());
+                    movie.postValue(movieAPIResponse);
+                }
+                else if(response.errorBody() != null){
+                    MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
+                    movieAPIResponse.setResponse(response.isSuccessful());
+
+                    try {
+                        Log.d(TAG, "errore1"+response.errorBody().string()+"- "+response.message());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    movie.postValue(movieAPIResponse);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieAPIResponse> call, Throwable t) {
+                MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
+                movieAPIResponse.setResponse(false);
+                movie.postValue(movieAPIResponse);
+
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+
 }
