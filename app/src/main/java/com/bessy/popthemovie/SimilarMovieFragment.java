@@ -71,6 +71,7 @@ public class SimilarMovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         viewModel.getFilmMaiVisti();
+        viewModel.getClassificaFilm();
         position = 0;
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         sd = new ShakeDetector(new ShakeDetector.Listener() {

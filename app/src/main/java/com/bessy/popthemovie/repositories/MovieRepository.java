@@ -136,4 +136,39 @@ public class MovieRepository {
     }
     //-------------------------------//
 
+        //------------------------------> GET CLASSIFICA FILM
+    public void getClassificaFilm(MutableLiveData<List<Movie>> classificaFilmLiveData, String email){
+        Call<List<Movie>> call = movieService.getClassificaFilm(email);
+        call.enqueue(new Callback<List<Movie>>() {
+            @Override
+            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+                List<Movie> classificaFilm;
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                    List<Movie> responseList = response.body();
+                    classificaFilm = new ArrayList<>();
+                    for(int i = 0; i<responseList.size(); i++){
+                        classificaFilm.add(new Movie(responseList.get(i).getId(),
+                                                     responseList.get(i).getTitolo(),
+                                                     responseList.get(i).getGenere(),
+                                                     responseList.get(i).getPoster()));
+                    }
+                    Log.d(TAG, classificaFilm.get(0).getTitolo());
+
+                    classificaFilmLiveData.postValue(classificaFilm);
+
+                }
+                else if(response.errorBody() != null){
+                    Log.d(TAG, "errore1"+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Movie>> call, Throwable t) {
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+    //-------------------------------//
+
 }

@@ -29,5 +29,7 @@ public interface MovieService {
     @GET("film/filmMaiVisti")
     Call<List<FilmMaiVistoUtente>> getFilmMaiVisti(@Query("id") String email);
 
-
+    //GET CLASSIFICA FILM PER AFFINITA
+    @GET("film/filmInClassifica")
+    Call<List<Movie>> getClassificaFilm(@Query("id") String email);
 }
