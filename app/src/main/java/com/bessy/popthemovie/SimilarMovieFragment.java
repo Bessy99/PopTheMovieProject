@@ -32,8 +32,10 @@ public class SimilarMovieFragment extends Fragment {
     private SensorManager sm;
     private ShakeDetector sd;
     private MainActivityViewModel viewModel;
-    List<Movie> classificaFilmList;
-    int position;
+    private List<Movie> classificaFilmList;
+    private int position;
+    private long lastShake=0;
+
 
     public SimilarMovieFragment() {
         // Required empty public constructor
@@ -78,14 +80,21 @@ public class SimilarMovieFragment extends Fragment {
         sd = new ShakeDetector(new ShakeDetector.Listener() {
             @Override
             public void hearShake() {
-                Log.d(TAG, "shakee!");
-                if(classificaFilmList!= null && position < classificaFilmList.size()) {
+                if (classificaFilmList != null && classificaFilmList.size() > 0) {
+                    if (separateShake()) {
+                        Log.d(TAG, "shakee!" + position);
+                        lastShake = System.currentTimeMillis();
+                        if (position >= classificaFilmList.size()) {
+                            position = 0;
+                        }
                         bind(classificaFilmList.get(position));
                         position++;
-                } else
-                        binding.titoloTextViewSimilar.setText("i film suggeriti sono terminati");
+                    }
+                }
+                else binding.titoloTextViewSimilar.setText("i film suggeriti sono terminati");
             }
         });
+        sd.start(sm);
 
     }
 
@@ -94,6 +103,10 @@ public class SimilarMovieFragment extends Fragment {
         binding.genereTextViewSimilar.setText(movie.getGenere());
         Picasso.get().load(movie.getPoster()).into(binding.posterImageViewSimilar);
 
+    }
+
+    public boolean separateShake(){
+        return ((System.currentTimeMillis() - lastShake) > 3000) ? true : false;
     }
 
     @Override
