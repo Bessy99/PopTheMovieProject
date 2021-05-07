@@ -18,7 +18,7 @@
                 android:id="@+id/posterImageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="70"
+                android:layout_weight="80"
                 android:scaleType="centerCrop"
                 />
 
@@ -26,7 +26,7 @@
                     android:id="@+id/titoloTextView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="15"
                     android:text="title placeholder"
                     android:fadingEdge="vertical"
                     android:textAppearance="?attr/textAppearanceHeadline6"
