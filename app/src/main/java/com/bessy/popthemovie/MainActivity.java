@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity" ;
     private ActivityMainBinding binding;
+
     private MainActivityViewModel mainActivityViewModel;
 
     @Override
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         //Bottom navigation
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
+
+        setSupportActionBar(binding.toolbar);
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 

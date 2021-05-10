@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -59,6 +60,9 @@ public class ListeUtenteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+       //getActivity().getActionBar().setTitle("titolo");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Liste utente");
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
