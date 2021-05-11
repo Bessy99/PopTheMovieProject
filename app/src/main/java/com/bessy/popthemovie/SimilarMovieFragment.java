@@ -60,7 +60,7 @@ public class SimilarMovieFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Affinità");
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Affinità");
         position = 0;
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
 

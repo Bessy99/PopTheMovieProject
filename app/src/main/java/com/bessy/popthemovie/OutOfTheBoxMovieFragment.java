@@ -64,7 +64,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Out of the box!");
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Out of the box!");
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         viewModel.getClassificaFilm();
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {

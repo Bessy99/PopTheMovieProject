@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Search");
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Search");
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
 
         SearchView searchView = binding.searchView;

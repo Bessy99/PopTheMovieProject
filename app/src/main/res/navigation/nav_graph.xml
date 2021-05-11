@@ -3,34 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listeUtenteFragment">
+    app:startDestination="@id/navigationlisteUtente">
 
     <fragment
-        android:id="@+id/listeUtenteFragment"
+        android:id="@+id/navigationlisteUtente"
         android:name="com.bessy.popthemovie.ListeUtenteFragment"
-        android:label="fragment_liste_utente"
+        android:label="liste utente"
         tools:layout="@layout/fragment_liste_utente" >
         <action
             android:id="@+id/action_listeUtenteFragment_to_dettaglioMovieFragment"
-            app:destination="@id/dettaglioMovieFragment" />
+            app:destination="@id/navigationDettaglio" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/navigationSearch"
         android:name="com.bessy.popthemovie.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/similarMovieFragment"
+        android:id="@+id/navigationSimilar"
         android:name="com.bessy.popthemovie.SimilarMovieFragment"
-        android:label="fragment_similar_movie"
+        android:label="affinità"
         tools:layout="@layout/fragment_similar_movie" />
     <fragment
-        android:id="@+id/outOfTheBoxMovieFragment"
+        android:id="@+id/navigationOutOfTheBox"
         android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
         android:label="fragment_out_of_the_box_movie"
         tools:layout="@layout/fragment_out_of_the_box_movie" />
     <fragment
-        android:id="@+id/dettaglioMovieFragment"
+        android:id="@+id/navigationDettaglio"
         android:name="com.bessy.popthemovie.DettaglioMovieFragment"
         android:label="fragment_dettaglio_movie"
         tools:layout="@layout/fragment_dettaglio_movie" />
