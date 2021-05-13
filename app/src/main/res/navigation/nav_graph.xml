@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigationlisteUtente"
         android:name="com.bessy.popthemovie.ListeUtenteFragment"
-        android:label="liste utente"
+        android:label="@string/toolbarLabel_listeUtente"
         tools:layout="@layout/fragment_liste_utente" >
         <action
             android:id="@+id/action_listeUtenteFragment_to_dettaglioMovieFragment"
@@ -17,21 +17,21 @@
     <fragment
         android:id="@+id/navigationSearch"
         android:name="com.bessy.popthemovie.SearchFragment"
-        android:label="fragment_search"
+        android:label="@string/toolbarLabel_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/navigationSimilar"
         android:name="com.bessy.popthemovie.SimilarMovieFragment"
-        android:label="affinità"
+        android:label="@string/toolbarLabel_similar"
         tools:layout="@layout/fragment_similar_movie" />
     <fragment
         android:id="@+id/navigationOutOfTheBox"
         android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
-        android:label="fragment_out_of_the_box_movie"
+        android:label="@string/toolbarLabel_outOfTheBox"
         tools:layout="@layout/fragment_out_of_the_box_movie" />
     <fragment
         android:id="@+id/navigationDettaglio"
         android:name="com.bessy.popthemovie.DettaglioMovieFragment"
-        android:label="fragment_dettaglio_movie"
+        android:label="@string/toolbarLabel_dettaglio"
         tools:layout="@layout/fragment_dettaglio_movie" />
 </navigation>

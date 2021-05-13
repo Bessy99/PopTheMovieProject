@@ -10,14 +10,16 @@ public class Movie implements Parcelable {
     private String titolo;
     private String genere;
     private String poster;
+    private String durata;
 
     public Movie(){}
 
-    public Movie(String id, String titolo, String genere, String poster) {
+    public Movie(String id, String titolo, String genere, String poster, String durata) {
         this.id = id;
         this.titolo = titolo;
         this.genere = genere;
         this.poster = poster;
+        this.durata = durata;
     }
 
     protected Movie(Parcel in) {
@@ -25,6 +27,7 @@ public class Movie implements Parcelable {
         titolo = in.readString();
         genere = in.readString();
         poster = in.readString();
+        durata = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -49,6 +52,7 @@ public class Movie implements Parcelable {
         dest.writeString(id);
         dest.writeString(titolo);
         dest.writeString(genere);
+        dest.writeString(durata);
         dest.writeString(poster);
     }
 
@@ -82,6 +86,14 @@ public class Movie implements Parcelable {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getDurata() {
+        return durata;
+    }
+
+    public void setDurata(String durata) {
+        this.durata = durata;
     }
 
 }

@@ -7,20 +7,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/textViewFilmDaVedere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Film da vedere"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+                style="@style/TextOnSecondaryTheme"
+               />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listaFilmDaVedereRecyclerView"
@@ -32,13 +35,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/textViewFilmVisti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Film visti"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+                style="@style/TextOnSecondaryTheme"
+               />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listaFilmVistiRecyclerView"

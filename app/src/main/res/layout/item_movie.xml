@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/cardMovie"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        >
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMovie"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,28 +18,45 @@
                 android:id="@+id/posterImageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="80"
-                android:scaleType="centerCrop"
-                />
+                android:layout_weight="60"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@color/primaryDarkColor"
+                android:layout_weight="40"
+                android:orientation="vertical"
+                >
 
                 <TextView
-                    android:id="@+id/titoloTextView"
+                    android:id="@+id/titoloItem"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="15"
-                    android:text="title placeholder"
-                    android:fadingEdge="vertical"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    />
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="Titolo" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttoVediDettagli"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="5"
-                android:text="vedi dettagli" />
+                <TextView
+                    android:id="@+id/durataItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="durata" />
+
+                <TextView
+                    android:id="@+id/genereItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="genere" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttoVediDettagli"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="vedi dettagli"
+                    android:textColor="@color/secondaryColor" />
+            </LinearLayout>
 
             </LinearLayout>
 

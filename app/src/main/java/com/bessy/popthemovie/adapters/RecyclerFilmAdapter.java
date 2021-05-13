@@ -20,6 +20,8 @@ import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -41,20 +43,27 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public static class FilmViewHolder extends RecyclerView.ViewHolder{
-        TextView titoloTextView;
         ImageView posterImageView;
+        TextView titoloTextView;
+        TextView durataTextView;
+        TextView genereTextView;
         Button dettagliButton;
 
         public FilmViewHolder(View view){
             super(view);
-            titoloTextView = view.findViewById(R.id.titoloTextView);
             posterImageView = view.findViewById(R.id.posterImageView);
+            titoloTextView = view.findViewById(R.id.titoloItem);
+            genereTextView = view.findViewById(R.id.genereItem);
+            durataTextView = view.findViewById(R.id.durataItem);
             dettagliButton = view.findViewById(R.id.buttoVediDettagli);
         }
 
         public void bind(Movie movieNext, MainActivityViewModel viewModel) {
-            titoloTextView.setText(movieNext.getTitolo());
+            posterImageView.setContentDescription(movieNext.getTitolo());
             Picasso.get().load(movieNext.getPoster()).into(posterImageView);
+            titoloTextView.setText(movieNext.getTitolo());
+            genereTextView.setText(movieNext.getGenere());
+            durataTextView.setText("null");
             dettagliButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

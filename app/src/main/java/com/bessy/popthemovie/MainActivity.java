@@ -34,10 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar
         setSupportActionBar(binding.toolbar);
-
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigationlisteUtente, R.id.navigationSearch, R.id.navigationSimilar, R.id.navigationOutOfTheBox).build();
-
 
         //Bottom navigation
         NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);

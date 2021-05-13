@@ -61,8 +61,6 @@ public class ListeUtenteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       // ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Liste utente");
-
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         LinearLayoutManager layoutManagerDaVedere = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManagerVisti = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
