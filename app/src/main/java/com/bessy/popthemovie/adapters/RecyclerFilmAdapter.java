@@ -55,7 +55,7 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             titoloTextView = view.findViewById(R.id.titoloItem);
             genereTextView = view.findViewById(R.id.genereItem);
             durataTextView = view.findViewById(R.id.durataItem);
-            dettagliButton = view.findViewById(R.id.buttoVediDettagli);
+            dettagliButton = view.findViewById(R.id.buttonVediDettagli);
         }
 
         public void bind(Movie movieNext, MainActivityViewModel viewModel) {
@@ -63,7 +63,9 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             Picasso.get().load(movieNext.getPoster()).into(posterImageView);
             titoloTextView.setText(movieNext.getTitolo());
             genereTextView.setText(movieNext.getGenere());
-            durataTextView.setText("null");
+            if(movieNext.getDurata()!=null)
+                durataTextView.setText(movieNext.getDurata());
+            else durataTextView.setText("durata sconosciuta");
             dettagliButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

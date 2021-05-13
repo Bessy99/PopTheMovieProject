@@ -36,6 +36,8 @@ public class MovieAPIRepository {
         return instance;
     }
 
+    //---------------------------------> GET MOVIE BY TITLE
+
     public void getMovie(MutableLiveData<MovieAPIResponse> movie, String title){
         Call<MovieAPIResponse> call = movieAPIService.getMovie(Constants.OMDB_API_KEY, title);
         call.enqueue(new Callback<MovieAPIResponse>() {
@@ -51,6 +53,7 @@ public class MovieAPIRepository {
                     movieAPIResponse.setPlot(response.body().getPlot());
                     movieAPIResponse.setPoster(response.body().getPoster());
                     movieAPIResponse.setTitle(response.body().getTitle());
+                    movieAPIResponse.setRuntime(response.body().getRuntime());
                     movieAPIResponse.setResponse(response.isSuccessful());
                     movie.postValue(movieAPIResponse);
                 }
@@ -77,6 +80,10 @@ public class MovieAPIRepository {
             }
         });
     }
+
+    //--------------------------------
+
+    //--------------------------------> GET MOVIE BY ID
 
     public void getMovieById(MutableLiveData<MovieAPIResponse> movie, String id){
         Call<MovieAPIResponse> call = movieAPIService.getMovieById(Constants.OMDB_API_KEY, id);
@@ -93,6 +100,7 @@ public class MovieAPIRepository {
                     movieAPIResponse.setPlot(response.body().getPlot());
                     movieAPIResponse.setPoster(response.body().getPoster());
                     movieAPIResponse.setTitle(response.body().getTitle());
+                    movieAPIResponse.setRuntime(response.body().getRuntime());
                     movieAPIResponse.setResponse(response.isSuccessful());
                     movie.postValue(movieAPIResponse);
                 }
@@ -119,5 +127,7 @@ public class MovieAPIRepository {
             }
         });
     }
+
+    //-------------------------------
 
 }

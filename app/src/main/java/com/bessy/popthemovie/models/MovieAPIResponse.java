@@ -13,16 +13,19 @@ public class MovieAPIResponse implements Parcelable {
     private String Poster;
     //trama film
     private String Plot;
+    //durata film
+    private String Runtime;
 
     public MovieAPIResponse(){}
 
-    public MovieAPIResponse(boolean response, String imdbID, String title, String genre, String poster, String plot) {
+    public MovieAPIResponse(boolean response, String imdbID, String title, String genre, String poster, String plot, String runtime) {
         Response = response;
         this.imdbID = imdbID;
         Title = title;
         Genre = genre;
         Poster = poster;
         Plot = plot;
+        Runtime = runtime;
     }
 
     protected MovieAPIResponse(Parcel in) {
@@ -32,6 +35,7 @@ public class MovieAPIResponse implements Parcelable {
         Genre = in.readString();
         Poster = in.readString();
         Plot = in.readString();
+        Runtime = in.readString();
     }
 
     public static final Creator<MovieAPIResponse> CREATOR = new Creator<MovieAPIResponse>() {
@@ -59,6 +63,7 @@ public class MovieAPIResponse implements Parcelable {
         dest.writeString(Genre);
         dest.writeString(Poster);
         dest.writeString(Plot);
+        dest.writeString(Runtime);
     }
 
     //------------------------------> GETTER E SETTER
@@ -110,6 +115,14 @@ public class MovieAPIResponse implements Parcelable {
         Plot = plot;
     }
 
+    public String getRuntime() {
+        return Runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        Runtime = runtime;
+    }
+
     @Override
     public String toString() {
         return "MovieAPIResponse{" +
@@ -118,6 +131,7 @@ public class MovieAPIResponse implements Parcelable {
                 ", Title='" + Title + '\'' +
                 ", Genre='" + Genre + '\'' +
                 ", Poster='" + Poster + '\'' +
+                ", Runtime='" + Runtime + '\'' +
                 ", Plot='" + Plot + '\'' +
                 '}';
     }

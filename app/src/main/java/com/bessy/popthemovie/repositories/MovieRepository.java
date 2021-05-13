@@ -65,7 +65,7 @@ public class MovieRepository {
     }
 
     public Movie createMovie(MovieAPIResponse movieToAdd){
-        return new Movie(movieToAdd.getImdbID(), movieToAdd.getTitle(), movieToAdd.getGenre(), movieToAdd.getPoster());
+        return new Movie(movieToAdd.getImdbID(), movieToAdd.getTitle(), movieToAdd.getGenre(), movieToAdd.getPoster(), movieToAdd.getRuntime());
     }
     //------------------------------//
 
@@ -84,7 +84,8 @@ public class MovieRepository {
                         classificaFilm.add(new Movie(responseList.get(i).getId(),
                                                      responseList.get(i).getTitolo(),
                                                      responseList.get(i).getGenere(),
-                                                     responseList.get(i).getPoster()));
+                                                     responseList.get(i).getPoster(),
+                                                     responseList.get(i).getDurata()));
                     }
                     Log.d(TAG, classificaFilm.get(0).getTitolo());
 
