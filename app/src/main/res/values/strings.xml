@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">PopTheMovie</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="toolbarLabel_outOfTheBox">Out of the box</string>
-    <string name="toolbarLabel_dettaglio">Maggiori informazioni</string>
-    <string name="toolbarLabel_similar">Film simili a me</string>
-    <string name="toolbarLabel_search">Cerca un nuovo film</string>
-    <string name="toolbarLabel_listeUtente">Le mie liste</string>
+    <string name="toolbarLabel_outOfTheBox">Out of the box...</string>
+    <string name="toolbarLabel_dettaglio">Maggiori informazioni...</string>
+    <string name="toolbarLabel_similar">Film simili a me...</string>
+    <string name="toolbarLabel_search">"Cerca un nuovo film..."</string>
+    <string name="toolbarLabel_listeUtente">"Le mie liste  "</string>
 </resources>
