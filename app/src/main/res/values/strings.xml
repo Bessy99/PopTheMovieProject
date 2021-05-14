@@ -6,4 +6,6 @@
     <string name="toolbarLabel_similar">Film simili a me...</string>
     <string name="toolbarLabel_search">"Cerca un nuovo film..."</string>
     <string name="toolbarLabel_listeUtente">"Le mie liste  "</string>
+    <string name="film_da_vedere_liste_utente">Film da vedere</string>
+    <string name="film_visti_liste_utente">Film visti</string>
 </resources>

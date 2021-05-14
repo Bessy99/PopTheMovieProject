@@ -4,27 +4,29 @@
     android:id="@+id/cardMovie"
     android:layout_width="150dp"
     android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/primaryColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:layout_margin="4dp">
 
         <!-- Media -->
         <ImageView
             android:id="@+id/posterImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="70"
+            android:layout_weight="75"
             android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"
-            android:background="@drawable/nero_sfumato"
+            android:layout_weight="23"
+            android:layout_marginTop="8dp"
             android:weightSum="100"
             android:orientation="vertical">
 
@@ -32,7 +34,7 @@
                 android:id="@+id/titoloItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_weight="60"
                 android:text="Titolo"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
@@ -41,35 +43,34 @@
                 android:id="@+id/genereItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="33"
+                android:layout_weight="40"
                 android:text="genere"
                 android:lines="1"/>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="33">
-
-                <TextView
-                    android:id="@+id/durataItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="durata" />
-
-                <ImageButton
-                    android:id="@+id/buttonVediDettagli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/info_icon"
-                    android:background="@android:color/transparent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"/>
-            </RelativeLayout>
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/durataItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="durata" />
+
+            <ImageButton
+                android:id="@+id/buttonVediDettagli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info_icon"
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
 
     </LinearLayout>
 

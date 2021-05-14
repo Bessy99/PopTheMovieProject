@@ -15,6 +15,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/raleway_light</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
     </style>
 
     <style name="ToolbarStyle">
@@ -33,7 +34,6 @@
     </style>
 
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textStyle">italic</item>
         <item name="android:fontFamily">@font/kaushan_script</item>
         <item name="android:textSize">30dp</item>
 
@@ -48,6 +48,7 @@
     <style name="TextOnSecondaryTheme">
         <item name="android:textColor">?colorPrimary</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 
