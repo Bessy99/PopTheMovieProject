@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardMovie"
-    android:layout_width="wrap_content"
+    android:layout_width="150dp"
     android:layout_height="match_parent"
     android:layout_margin="8dp">
 
@@ -17,43 +17,58 @@
             android:id="@+id/posterImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="60"
+            android:layout_weight="70"
             android:scaleType="centerCrop" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="40"
-            android:background="@color/primaryDarkColor"
+            android:layout_weight="30"
+            android:background="@drawable/nero_sfumato"
+            android:weightSum="100"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titoloItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="34"
                 android:text="Titolo"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/durataItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="durata" />
-
-            <TextView
                 android:id="@+id/genereItem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="genere" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonVediDettagli"
-                style="?attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vedi dettagli"
-                android:textColor="@color/secondaryColor" />
+                android:layout_weight="33"
+                android:text="genere"
+                android:lines="1"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="33">
+
+                <TextView
+                    android:id="@+id/durataItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="durata" />
+
+                <ImageButton
+                    android:id="@+id/buttonVediDettagli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/info_icon"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"/>
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
