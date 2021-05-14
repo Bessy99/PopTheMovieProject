@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -69,6 +70,8 @@ public class DettaglioMovieFragment extends Fragment {
         };
 
         viewModel.getLastMovie().observe(getViewLifecycleOwner(),observerMovie);
+
+
     }
 
 }

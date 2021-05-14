@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity" ;
     private ActivityMainBinding binding;
+    AppBarConfiguration appBarConfiguration;
 
     private MainActivityViewModel mainActivityViewModel;
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar
         setSupportActionBar(binding.toolbar);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+        appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigationlisteUtente, R.id.navigationSearch, R.id.navigationSimilar, R.id.navigationOutOfTheBox).build();
 
         //Bottom navigation
@@ -60,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
         MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("lost");
         */
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 
 }
