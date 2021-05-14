@@ -12,7 +12,9 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryColor"
+                android:iconifiedByDefault="false"
+                android:searchIcon="@drawable/search_icon"
+                android:queryBackground="@color/primaryColor"
                 />
 
             <androidx.fragment.app.FragmentContainerView
