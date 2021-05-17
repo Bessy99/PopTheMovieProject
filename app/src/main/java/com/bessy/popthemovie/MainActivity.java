@@ -8,11 +8,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toolbar;
 
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
+import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.bessy.popthemovie.models.User;
 
@@ -43,14 +46,21 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString(Constants.SHARED_PREFERENCES_USERNAME,null);
+        String password = sharedPreferences.getString(Constants.SHARED_PREFERENCES_PASSWORD, null);
+
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MutableLiveData<User> user = mainActivityViewModel.getUser(username, password);
 
 
-        /* recupera user da id */
+
+        /* recupera user da id
+        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         MutableLiveData<User> user = mainActivityViewModel.getUser("c.besana@gmail.com", "password1");
         //MutableLiveData<User> user = mainActivityViewModel.getUser("c.n@hmfg.com", "fhhd");
-        /* */
+         */
 
         /* registra nuovo user
         User u = new User("pop@gmail.com","passd5","nompo","cognop", null, null);
