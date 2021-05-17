@@ -37,7 +37,8 @@
                 android:layout_weight="60"
                 android:text="Titolo"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:lines="1"/>
 
             <TextView
                 android:id="@+id/genereItem"
