@@ -60,6 +60,31 @@ public class UserRepository {
     }
     //------------------------------//
 
+    //------------------------------> USER EXISTS?
+    public void userExists(MutableLiveData<Boolean> userExistsLiveData, String email, String password){
+        Call<Boolean> call = userService.userExists(email,password);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful() && response.body()!= null){
+                    Log.d(TAG, "risposta ricevuta: "+response.body().toString());
+                    userExistsLiveData.postValue(response.body());
+                }
+                else{
+                    userExistsLiveData.postValue(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Log.d(TAG, "risposta non inviata: "+t.getMessage());
+                userExistsLiveData.postValue(false);
+            }
+        });
+
+    }
+    //------------------------------//
+
     //------------------------------> GET USER BY Email e Password
     public void getUser(MutableLiveData<User> userLiveData, String email, String password){
         Call<User> call = userService.getUser(email, password);

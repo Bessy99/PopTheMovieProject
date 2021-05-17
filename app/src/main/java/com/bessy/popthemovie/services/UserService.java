@@ -18,4 +18,6 @@ public interface UserService {
     @POST("user/saveUser")
     Call<User> postUser(@Body User user);
 
+    @GET("user/exists")
+    Call<Boolean> userExists(@Query("id") String email, @Query("password") String password);
 }
