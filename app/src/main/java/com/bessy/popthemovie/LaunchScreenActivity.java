@@ -10,15 +10,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.bessy.popthemovie.utils.Constants;
-import com.bessy.popthemovie.viewModel.LaunchScreenActivityViewModel;
+import com.bessy.popthemovie.viewModel.LoginViewModel;
 
 public class LaunchScreenActivity extends AppCompatActivity {
-    private LaunchScreenActivityViewModel viewModel;
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(LaunchScreenActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
     }
 

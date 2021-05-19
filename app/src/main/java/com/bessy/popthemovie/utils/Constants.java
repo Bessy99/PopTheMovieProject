@@ -1,7 +1,7 @@
 package com.bessy.popthemovie.utils;
 
 public class Constants {
-    public static final String SHARED_PREFERENCES_FILE_NAME = "shared_preferences";
+    public static final String SHARED_PREFERENCES_FILE_NAME = "shared_preferences_login";
     public static final String SHARED_PREFERENCES_USERNAME = "username";
     public static final String SHARED_PREFERENCES_PASSWORD = "password";
 

@@ -14,7 +14,7 @@ import com.bessy.popthemovie.repositories.UserRepository;
 
 import java.util.List;
 
-public class LaunchScreenActivityViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
     private MutableLiveData<Boolean> userExists;
 
     //------------------> User
@@ -30,6 +30,9 @@ public class LaunchScreenActivityViewModel extends ViewModel {
    //--------------------//
 
     public MutableLiveData<Boolean> exists(){
+        if(userExists == null){
+            userExists = new MutableLiveData<Boolean>();
+        }
         return userExists;
     }
 }
