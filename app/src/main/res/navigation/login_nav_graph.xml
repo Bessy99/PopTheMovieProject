@@ -19,7 +19,11 @@
         android:id="@+id/signInFragment"
         android:name="com.bessy.popthemovie.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.bessy.popthemovie.MainActivity"

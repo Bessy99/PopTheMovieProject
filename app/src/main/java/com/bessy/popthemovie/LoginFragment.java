@@ -24,9 +24,9 @@ import com.bessy.popthemovie.viewModel.LoginViewModel;
 import org.jetbrains.annotations.NotNull;
 
 public class LoginFragment extends Fragment {
-    FragmentLoginBinding binding;
-    static LoginFragment instance;
-    LoginViewModel viewModel;
+    private FragmentLoginBinding binding;
+    private static LoginFragment instance;
+    private LoginViewModel viewModel;
 
     public LoginFragment() {
         // Required empty public constructor
