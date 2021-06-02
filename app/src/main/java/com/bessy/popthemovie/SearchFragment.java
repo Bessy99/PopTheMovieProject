@@ -15,7 +15,13 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import com.bessy.popthemovie.databinding.FragmentSearchBinding;
+import com.bessy.popthemovie.models.Movie;
+import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class SearchFragment extends Fragment {
 
@@ -68,7 +74,16 @@ public class SearchFragment extends Fragment {
         addVistiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.AddFilmVisto(viewModel.getLastMovie().getValue());
+                if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
+                    if (controllo()) {
+                        viewModel.AddFilmVisto(viewModel.getLastMovie().getValue());
+                        Snackbar.make(v, "Film aggiunto alla lista dei film visti!", Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(v, "Il film è già presente nelle tue liste!", Snackbar.LENGTH_SHORT).show();
+                    }
+                    viewModel.getLastMovie().postValue(new MovieAPIResponse());
+                }
+                else Snackbar.make(v, "Cerca un film che hai visto!", Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -76,11 +91,44 @@ public class SearchFragment extends Fragment {
         addDaVedereButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.AddFilmDaVedere(viewModel.getLastMovie().getValue());
+                if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
+                    if (controllo()) {
+                        viewModel.AddFilmDaVedere(viewModel.getLastMovie().getValue());
+                        Snackbar.make(v, "Film aggiunto alla lista dei film da vedere!", Snackbar.LENGTH_SHORT).show();
+
+                    } else {
+                        Snackbar.make(v, "Il film è già presente nelle tue liste!", Snackbar.LENGTH_SHORT).show();
+                    }
+                    viewModel.getLastMovie().postValue(new MovieAPIResponse());
+                }
+                else Snackbar.make(v, "Cerca un film da vedere!", Snackbar.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
+    private boolean controllo() {
+        String imbdId = viewModel.getLastMovie().getValue().getImdbID();
+        List<Movie> filmVisti = viewModel.getFilmVisti();
+        List<Movie> filmDaVedere = viewModel.getFilmDaVedere();
+        boolean nonPresente = true;
+        Iterator<Movie> iVisti = filmVisti.iterator();
+        Iterator<Movie> iDaVedere = filmDaVedere.iterator();
+        while (nonPresente && iVisti.hasNext()) {
+            Movie m = iVisti.next();
+            if (m != null) {
+                if (imbdId.equals(m.getId())) {
+                    nonPresente = false;
+                }
+            }
+        }
+        while (nonPresente && iDaVedere.hasNext()) {
+            Movie m = iDaVedere.next();
+            if (m != null) {
+                if (imbdId.equals(m.getId())) {
+                    nonPresente = false;
+                }
+            }
+        }
+        return nonPresente;
+    }
 }

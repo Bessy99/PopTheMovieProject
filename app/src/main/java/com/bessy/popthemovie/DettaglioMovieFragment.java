@@ -70,8 +70,11 @@ public class DettaglioMovieFragment extends Fragment {
         };
 
         viewModel.getLastMovie().observe(getViewLifecycleOwner(),observerMovie);
-
-
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        viewModel.getLastMovie().postValue(new MovieAPIResponse());
+    }
 }

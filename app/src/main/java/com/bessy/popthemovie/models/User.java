@@ -3,6 +3,7 @@ package com.bessy.popthemovie.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +15,10 @@ public class User implements Parcelable {
     private List<Movie> filmVisti;
     private List<Movie> filmDaVedere;
 
-    public User(){}
+    public User(){
+        filmVisti = new ArrayList<Movie>();
+        filmDaVedere = new ArrayList<Movie>();
+    }
 
     public User(String email, String password, String nome, String cognome, List<Movie> filmVisti, List<Movie> filmDaVedere) {
         this.email = email;

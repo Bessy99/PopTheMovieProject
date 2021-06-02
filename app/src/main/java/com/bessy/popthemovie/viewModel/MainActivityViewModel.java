@@ -32,9 +32,22 @@ public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<User> getUser(){
         if(user == null){
             user = new MutableLiveData<User>();
-            Log.d("view model", "entra");
         }
         return user;
+    }
+
+    public List<Movie> getFilmDaVedere(){
+        if(user == null){
+            user = new MutableLiveData<User>();
+        }
+        return user.getValue().getFilmDaVedere();
+    }
+
+    public List<Movie> getFilmVisti(){
+        if(user == null){
+            user = new MutableLiveData<User>();
+        }
+        return user.getValue().getFilmVisti();
     }
 
     public MutableLiveData<User> saveUser(User userToSave){
