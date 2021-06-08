@@ -1,6 +1,5 @@
 package com.bessy.popthemovie.models;
 
-import android.graphics.Movie;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,10 +14,12 @@ public class MovieAPIResponse implements Parcelable {
     private String Plot;
     //durata film
     private String Runtime;
+    private float imdbRating;
+
 
     public MovieAPIResponse(){}
 
-    public MovieAPIResponse(boolean response, String imdbID, String title, String genre, String poster, String plot, String runtime) {
+    public MovieAPIResponse(boolean response, String imdbID, String title, String genre, String poster, String plot, String runtime, float imdbRating) {
         Response = response;
         this.imdbID = imdbID;
         Title = title;
@@ -26,6 +27,7 @@ public class MovieAPIResponse implements Parcelable {
         Poster = poster;
         Plot = plot;
         Runtime = runtime;
+        this.imdbRating = imdbRating;
     }
 
     protected MovieAPIResponse(Parcel in) {
@@ -64,6 +66,7 @@ public class MovieAPIResponse implements Parcelable {
         dest.writeString(Poster);
         dest.writeString(Plot);
         dest.writeString(Runtime);
+        dest.writeFloat(imdbRating);
     }
 
     //------------------------------> GETTER E SETTER
@@ -123,6 +126,14 @@ public class MovieAPIResponse implements Parcelable {
         Runtime = runtime;
     }
 
+    public float getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(float imdbRating) {
+        this.imdbRating = imdbRating/2;
+    }
+
     @Override
     public String toString() {
         return "MovieAPIResponse{" +
@@ -132,9 +143,12 @@ public class MovieAPIResponse implements Parcelable {
                 ", Genre='" + Genre + '\'' +
                 ", Poster='" + Poster + '\'' +
                 ", Runtime='" + Runtime + '\'' +
+                ", imdbRating='" + imdbRating + '\'' +
                 ", Plot='" + Plot + '\'' +
                 '}';
     }
+
+
     //-------------------------------------//
 
 

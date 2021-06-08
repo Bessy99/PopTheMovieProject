@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class RecyclerMovieAPIResponse extends RecyclerView.Adapter<RecyclerView.
         TextView genereTextView;
         TextView plotTextView;
         ImageView posterImageView;
+        RatingBar ratingBar;
 
         public DettaglioViewHolder(View view){
             super(view);
@@ -45,6 +47,7 @@ public class RecyclerMovieAPIResponse extends RecyclerView.Adapter<RecyclerView.
             genereTextView = view.findViewById(R.id.genereTextViewDettaglio);
             plotTextView = view.findViewById(R.id.tramaTextViewDettaglio);
             posterImageView = view.findViewById(R.id.posterImageViewDettaglio);
+            ratingBar = view.findViewById(R.id.ratingBar);
         }
 
         public void bind(MovieAPIResponse movieNext) {
@@ -52,6 +55,9 @@ public class RecyclerMovieAPIResponse extends RecyclerView.Adapter<RecyclerView.
             plotTextView.setText(movieNext.getPlot());
             genereTextView.setText(movieNext.getGenre());
             Picasso.get().load(movieNext.getPoster()).into(posterImageView);
+            ratingBar.setIsIndicator(false);
+            ratingBar.setRating(movieNext.getImdbRating());
+            ratingBar.setIsIndicator(true);
         }
     }
 

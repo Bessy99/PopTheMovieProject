@@ -55,6 +55,8 @@ public class MovieAPIRepository {
                     movieAPIResponse.setTitle(response.body().getTitle());
                     movieAPIResponse.setRuntime(response.body().getRuntime());
                     movieAPIResponse.setResponse(response.isSuccessful());
+                    movieAPIResponse.setImdbRating(response.body().getImdbRating());
+                    Log.d(TAG, "imdbRating:"+movieAPIResponse.getImdbRating());
                     movie.postValue(movieAPIResponse);
                 }
                 else if(response.errorBody() != null){
@@ -102,6 +104,8 @@ public class MovieAPIRepository {
                     movieAPIResponse.setTitle(response.body().getTitle());
                     movieAPIResponse.setRuntime(response.body().getRuntime());
                     movieAPIResponse.setResponse(response.isSuccessful());
+                    movieAPIResponse.setImdbRating(response.body().getImdbRating());
+                    Log.d(TAG, "imdbRating:"+movieAPIResponse.getImdbRating());
                     movie.postValue(movieAPIResponse);
                 }
                 else if(response.errorBody() != null){

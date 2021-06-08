@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardMovieDettaglio"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        >
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardMovieDettaglio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="1dp"
+    app:cardBackgroundColor="@color/primaryColor">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="8dp">
-        <!-- Media -->
-        <ImageView
-            android:id="@+id/posterImageViewDettaglio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cropToPadding="true"
+            android:layout_margin="1dp"
+            android:padding="8dp"
+            android:background="@color/secondaryColor">
+
+            <ImageView
+                android:id="@+id/posterImageViewDettaglio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cropToPadding="true"
             />
 
-        <TextView
-            android:id="@+id/titoloTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="title placeholder"
-            android:textAppearance="?attr/textAppearanceHeadline6"
+            <TextView
+                android:id="@+id/titoloTextViewDettaglio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title placeholder"
+                android:textColor="@color/primaryColor"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:layout_marginTop="8dp"
             />
-        <TextView
-            android:id="@+id/genereTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="genere placeholder"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="0.0"
+                android:layout_marginTop="8dp"
+                android:background="@color/primaryColor"
+                style="?android:attr/ratingBarStyleSmall"
             />
-        <TextView
-            android:id="@+id/tramaTextViewDettaglio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="plot placeholder"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
-            />
+
+            <TextView
+                android:id="@+id/genereTextViewDettaglio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="genere placeholder"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/primaryColor" />
+
+            <TextView
+                android:id="@+id/tramaTextViewDettaglio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="plot placeholder"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="@color/primaryColor" />
+
         </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
