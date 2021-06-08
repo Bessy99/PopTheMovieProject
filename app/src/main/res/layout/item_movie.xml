@@ -21,6 +21,13 @@
             android:layout_height="0dp"
             android:layout_weight="75"
             android:scaleType="centerCrop" />
+        <CheckBox
+            android:id="@+id/eliminaCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/ic_cancel"
+            app:buttonTint="@android:color/white"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

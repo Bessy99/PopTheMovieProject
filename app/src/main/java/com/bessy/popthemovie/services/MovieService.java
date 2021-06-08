@@ -2,6 +2,7 @@ package com.bessy.popthemovie.services;
 
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAddRequest;
+import com.bessy.popthemovie.models.MovieRemoveRequest;
 import com.bessy.popthemovie.models.User;
 
 import java.util.List;
@@ -16,6 +17,11 @@ public interface MovieService {
     // ADD NEW FILM
     @POST("user/addFilm")
     Call<User> addMovie(@Body MovieAddRequest movie);
+
+    // REMOVE FILM
+    @POST("user/removeFilm")
+    Call<User> removeMovie(@Body MovieRemoveRequest movie);
+
 
     //GET CLASSIFICA FILM PER AFFINITA
     @GET("film/filmInClassifica")

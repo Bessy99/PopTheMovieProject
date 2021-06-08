@@ -8,9 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.MovieAddRequest;
+import com.bessy.popthemovie.models.MovieRemoveRequest;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.MovieService;
 import com.bessy.popthemovie.utils.Constants;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,32 @@ public class MovieRepository {
                 }
                 else if(response.errorBody() != null){
                     Log.d(TAG, "errore1"+response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d(TAG, "errore2: "+t.getMessage());
+            }
+        });
+    }
+
+    //------------------------------> REMOVE MOVIE
+    // modalità: tolto dalla lista dei film da vedere oppure dalla lista dei film visti
+    public void removeMovie(String movieToRemove, String email, String modalita){
+        MovieRemoveRequest movieRemoveRequest = new MovieRemoveRequest(movieToRemove,modalita,email);
+        Gson jsonConverter = new Gson();
+        Log.d(TAG, jsonConverter.toJson(movieRemoveRequest));
+        Call<User> call = movieService.removeMovie(movieRemoveRequest);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if(response.isSuccessful() && response.body()!= null) {
+                    Log.d(TAG, "risposta ok");
+                }
+                else if(response.errorBody() != null){
+                    Log.d(TAG, "errore1 "+response.code());
                 }
             }
 

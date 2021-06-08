@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.bessy.popthemovie.MainActivity;
 import com.bessy.popthemovie.R;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
+import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -49,6 +52,7 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView durataTextView;
         TextView genereTextView;
         ImageButton dettagliButton;
+        CheckBox eliminaCheckBox;
 
         public FilmViewHolder(View view){
             super(view);
@@ -57,6 +61,7 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             genereTextView = view.findViewById(R.id.genereItem);
             durataTextView = view.findViewById(R.id.durataItem);
             dettagliButton = view.findViewById(R.id.buttonVediDettagli);
+            eliminaCheckBox = view.findViewById(R.id.eliminaCheckBox);
         }
 
         public void bind(Movie movieNext, MainActivityViewModel viewModel) {
@@ -72,6 +77,14 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 public void onClick(View v) {
                     viewModel.getMovieByTitle(movieNext.getTitolo());
                     Navigation.findNavController(v).navigate(R.id.action_listeUtenteFragment_to_dettaglioMovieFragment);
+                }
+            });
+            eliminaCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    viewModel.removeFilm(movieNext.getId());
+                    //per fare il refresh delle liste
+                    Navigation.findNavController(buttonView).navigate(R.id.action_navigationlisteUtente_self);
                 }
             });
         }

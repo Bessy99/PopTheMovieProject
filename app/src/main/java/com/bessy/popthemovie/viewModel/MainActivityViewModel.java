@@ -12,12 +12,14 @@ import com.bessy.popthemovie.repositories.MovieAPIRepository;
 import com.bessy.popthemovie.repositories.MovieRepository;
 import com.bessy.popthemovie.repositories.UserRepository;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> user;
     private MutableLiveData<MovieAPIResponse> movieAPIResponse;
     private MutableLiveData<List<Movie>> classificaFilm;
+    private MovieRepository movieRepository = MovieRepository.getInstance();
 
     //------------------> User
 
@@ -101,17 +103,44 @@ public class MainActivityViewModel extends ViewModel {
     //---------------------> Aggiungere movie alle liste dello User
 
     public void AddFilmVisto(MovieAPIResponse movieToAdd){
-        Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
-        MovieRepository.getInstance().saveMovie(movie, getUser().getValue().getEmail(),"visti");
+        Movie movie = movieRepository.createMovie(movieToAdd);
+        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"visti");
         getUser().getValue().getFilmVisti().add(movie);
     }
 
     public void AddFilmDaVedere(MovieAPIResponse movieToAdd){
-        Movie movie = MovieRepository.getInstance().createMovie(movieToAdd);
-        MovieRepository.getInstance().saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
+        Movie movie = movieRepository.createMovie(movieToAdd);
+        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
         getUser().getValue().getFilmDaVedere().add(movie);
     }
 
     //----------------------//
+    //---------------------> Rimuovere movie dalle liste dello User
+
+    public void removeFilm(String movieToRemove){
+        Log.d("ViewModel", movieToRemove);
+        Iterator<Movie> i = getUser().getValue().getFilmVisti().iterator();
+        boolean flag = true;
+        while(i.hasNext() && flag){
+            Movie m = i.next();
+            if(m.getId().equals(movieToRemove)){
+                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"visti");
+                flag = false;
+                getUser().getValue().getFilmVisti().remove(m);
+            }
+        }
+        i = getUser().getValue().getFilmDaVedere().iterator();
+        while(i.hasNext() && flag){
+            Movie m = i.next();
+            if(m.getId().equals(movieToRemove)){
+                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"daVedere");
+                flag = false;
+                getUser().getValue().getFilmDaVedere().remove(m);
+            }
+        }
+    }
+
+    //---------------------//
+
 
 }

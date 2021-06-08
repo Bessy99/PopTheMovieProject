@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_listeUtenteFragment_to_dettaglioMovieFragment"
             app:destination="@id/navigationDettaglio" />
+        <action
+            android:id="@+id/action_navigationlisteUtente_self"
+            app:destination="@id/navigationlisteUtente" />
     </fragment>
     <fragment
         android:id="@+id/navigationSearch"
