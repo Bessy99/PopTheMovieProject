@@ -14,20 +14,31 @@
         android:weightSum="100"
         android:layout_margin="4dp">
 
-        <!-- Media -->
-        <ImageView
-            android:id="@+id/posterImageView"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="75"
-            android:scaleType="centerCrop" />
-        <CheckBox
-            android:id="@+id/eliminaCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/ic_cancel"
-            app:buttonTint="@android:color/white"
-            />
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/posterImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignEnd="@+id/eliminaCheckBox"
+                android:layout_alignRight="@+id/eliminaCheckBox"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop" />
+
+            <CheckBox
+                android:id="@+id/eliminaCheckBox"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/round_button"
+                android:button="@drawable/ic_icons8_cancel"
+                app:buttonTint="@color/secondaryDarkColor" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
