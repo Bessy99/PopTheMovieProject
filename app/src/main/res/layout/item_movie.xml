@@ -30,12 +30,12 @@
 
             <CheckBox
                 android:id="@+id/eliminaCheckBox"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/round_button"
-                android:button="@drawable/ic_icons8_cancel"
+                android:button="@drawable/ic_cancel"
                 app:buttonTint="@color/secondaryDarkColor" />
 
         </RelativeLayout>
