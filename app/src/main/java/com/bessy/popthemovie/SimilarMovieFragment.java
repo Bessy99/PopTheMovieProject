@@ -106,6 +106,18 @@ public class SimilarMovieFragment extends Fragment {
         binding.genereTextViewSimilar.setText(movie.getGenere());
         binding.durataTextViewSimilar.setText(movie.getDurata());
         Picasso.get().load(movie.getPoster()).into(binding.posterImageViewSimilar);
+        binding.addDaVedereButtonSimilar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.addFilmDaVedere(movie);
+            }
+        });
+        binding.addVistiButtonSimilar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.addFilmVisto(movie);
+            }
+        });
 
     }
 

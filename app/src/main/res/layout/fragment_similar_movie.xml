@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    style="@style/TextOnSecondaryTheme"
+                    style="@style/TextOnSecondaryColor"
                     />
                 <TextView
                     android:id="@+id/durataTextViewSimilar"
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    style="@style/TextOnSecondaryTheme"
+                    style="@style/TextOnSecondaryColor"
                     />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

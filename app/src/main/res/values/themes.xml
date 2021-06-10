@@ -45,9 +45,16 @@
     </style>
 
     <style name="TextOnSecondaryTheme" parent="TextOnSecondaryColor">
-        <item name="android:textColor">?colorPrimary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ClassificaTitleTheme" parent="TextOnSecondaryColor">
+
+    </style>
+
+    <style name="ClassificaSottotiliTheme" parent="TextOnSecondaryColor">
+
     </style>
 
     <style name="TextOnSecondaryColor" >

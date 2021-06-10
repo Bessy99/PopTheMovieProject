@@ -14,6 +14,8 @@ import com.bessy.popthemovie.repositories.UserRepository;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> user;
@@ -91,10 +93,25 @@ public class MainActivityViewModel extends ViewModel {
         if(classificaFilm == null){
             classificaFilm = new MutableLiveData<List<Movie>>();
             if(getUser() != null && getUser().getValue()!=null) {
-                MovieRepository.getInstance().getClassificaFilm(classificaFilm, getUser().getValue().getEmail());
+                String s = getUser().getValue().getEmail();
+                Log.d("mainViewModelGet", s);
+                MovieRepository.getInstance().getClassificaFilm(classificaFilm,s);
             }
             else Log.d("mainViewModel", "user vuoto");
         }
+        return classificaFilm;
+    }
+
+    public MutableLiveData<List<Movie>> aggiornaClassificaFilm(){
+        if(classificaFilm == null) {
+            classificaFilm = new MutableLiveData<List<Movie>>();
+        }
+        if(getUser() != null && getUser().getValue()!=null) {
+            String s = getUser().getValue().getEmail();
+            Log.d("mainViewModelAggiorna", s);
+            MovieRepository.getInstance().getClassificaFilm(classificaFilm, s);
+        }
+        else Log.d("mainViewModel", "user vuoto");
         return classificaFilm;
     }
 
@@ -102,26 +119,57 @@ public class MainActivityViewModel extends ViewModel {
 
     //---------------------> Aggiungere movie alle liste dello User
 
-    public void addFilmVisto(MovieAPIResponse movieToAdd){
-        Movie movie = movieRepository.createMovie(movieToAdd);
-        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"visti");
-        getUser().getValue().getFilmVisti().add(movie);
+    public boolean addFilmVisto(){
+        Movie movie = movieRepository.createMovie(getLastMovie().getValue());
+        return addFilmVisto(movie);
     }
 
-    public void addFilmDaVedere(MovieAPIResponse movieToAdd){
-        Movie movie = movieRepository.createMovie(movieToAdd);
-        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
-        getUser().getValue().getFilmDaVedere().add(movie);
+    public boolean addFilmDaVedere(){
+        Movie movie = movieRepository.createMovie(getLastMovie().getValue());
+        return addFilmDaVedere(movie);
     }
 
-    public void addFilmVisto(Movie movie){
-        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"visti");
-        getUser().getValue().getFilmVisti().add(movie);
+    public boolean addFilmVisto(Movie movie){
+        if(controllo(movie.getId())) {
+            movieRepository.saveMovie(movie, getUser().getValue().getEmail(), "visti", this);
+            getUser().getValue().getFilmVisti().add(movie);
+            return true;
+        }
+        else return false;
     }
 
-    public void addFilmDaVedere(Movie movie){
-        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
-        getUser().getValue().getFilmDaVedere().add(movie);
+    public boolean addFilmDaVedere(Movie movie){
+        if(controllo(movie.getId())) {
+            movieRepository.saveMovie(movie, getUser().getValue().getEmail(), "daVedere", this);
+            getUser().getValue().getFilmDaVedere().add(movie);
+            return true;
+        }
+        else return false;
+    }
+
+    private boolean controllo(String imdbId) {
+        List<Movie> filmVisti = getFilmVisti();
+        List<Movie> filmDaVedere = getFilmDaVedere();
+        boolean nonPresente = true;
+        Iterator<Movie> iVisti = filmVisti.iterator();
+        Iterator<Movie> iDaVedere = filmDaVedere.iterator();
+        while (nonPresente && iVisti.hasNext()) {
+            Movie m = iVisti.next();
+            if (m != null) {
+                if (imdbId.equals(m.getId())) {
+                    nonPresente = false;
+                }
+            }
+        }
+        while (nonPresente && iDaVedere.hasNext()) {
+            Movie m = iDaVedere.next();
+            if (m != null) {
+                if (imdbId.equals(m.getId())) {
+                    nonPresente = false;
+                }
+            }
+        }
+        return nonPresente;
     }
 
 
@@ -135,16 +183,17 @@ public class MainActivityViewModel extends ViewModel {
         while(i.hasNext() && flag){
             Movie m = i.next();
             if(m.getId().equals(movieToRemove)){
-                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"visti");
+                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"visti", this);
                 flag = false;
                 getUser().getValue().getFilmVisti().remove(m);
+
             }
         }
         i = getUser().getValue().getFilmDaVedere().iterator();
         while(i.hasNext() && flag){
             Movie m = i.next();
             if(m.getId().equals(movieToRemove)){
-                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"daVedere");
+                movieRepository.removeMovie(movieToRemove, getUser().getValue().getEmail(),"daVedere", this);
                 flag = false;
                 getUser().getValue().getFilmDaVedere().remove(m);
             }

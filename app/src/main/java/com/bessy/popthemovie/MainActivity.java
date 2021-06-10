@@ -2,6 +2,7 @@ package com.bessy.popthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -52,26 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         MutableLiveData<User> user = mainActivityViewModel.getUser(username, password);
-
-
-
-        /* recupera user da id
-        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser("c.besana@gmail.com", "password1");
-        //MutableLiveData<User> user = mainActivityViewModel.getUser("c.n@hmfg.com", "fhhd");
-         */
-
-        /* registra nuovo user
-        User u = new User("pop@gmail.com","passd5","nompo","cognop", null, null);
-        user = mainActivityViewModel.saveUser(u);
-        */
-
-        /* recupera movie con titolo "hunger"
-        MovieViewModel movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
-        MutableLiveData<MovieAPIResponse> movieLiveData = mainActivityViewModel.getMovieByTitle("lost");
-        */
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

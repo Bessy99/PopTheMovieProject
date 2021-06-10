@@ -74,8 +74,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
-                    if (controllo()) {
-                        viewModel.addFilmVisto(viewModel.getLastMovie().getValue());
+                    if (viewModel.addFilmVisto()) {
                         Snackbar.make(v, "Film aggiunto alla lista dei film visti!", Snackbar.LENGTH_SHORT).show();
                     } else {
                         Snackbar.make(v, "Il film è già presente nelle tue liste!", Snackbar.LENGTH_SHORT).show();
@@ -91,8 +90,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
-                    if (controllo()) {
-                        viewModel.addFilmDaVedere(viewModel.getLastMovie().getValue());
+                    if (viewModel.addFilmDaVedere()) {
                         Snackbar.make(v, "Film aggiunto alla lista dei film da vedere!", Snackbar.LENGTH_SHORT).show();
 
                     } else {
@@ -103,31 +101,5 @@ public class SearchFragment extends Fragment {
                 else Snackbar.make(v, "Cerca un film da vedere!", Snackbar.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private boolean controllo() {
-        String imbdId = viewModel.getLastMovie().getValue().getImdbID();
-        List<Movie> filmVisti = viewModel.getFilmVisti();
-        List<Movie> filmDaVedere = viewModel.getFilmDaVedere();
-        boolean nonPresente = true;
-        Iterator<Movie> iVisti = filmVisti.iterator();
-        Iterator<Movie> iDaVedere = filmDaVedere.iterator();
-        while (nonPresente && iVisti.hasNext()) {
-            Movie m = iVisti.next();
-            if (m != null) {
-                if (imbdId.equals(m.getId())) {
-                    nonPresente = false;
-                }
-            }
-        }
-        while (nonPresente && iDaVedere.hasNext()) {
-            Movie m = iDaVedere.next();
-            if (m != null) {
-                if (imbdId.equals(m.getId())) {
-                    nonPresente = false;
-                }
-            }
-        }
-        return nonPresente;
     }
 }

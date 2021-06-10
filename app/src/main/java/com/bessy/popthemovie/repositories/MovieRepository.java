@@ -4,6 +4,7 @@ package com.bessy.popthemovie.repositories;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
@@ -12,6 +13,7 @@ import com.bessy.popthemovie.models.MovieRemoveRequest;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.MovieService;
 import com.bessy.popthemovie.utils.Constants;
+import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class MovieRepository {
 
     //------------------------------> SAVE MOVIE
     // modalità: aggiungerlo alla lista dei film da vedere oppure alla lista dei film visti
-    public void saveMovie(Movie movieToSave, String email, String modalita){
+    public void saveMovie(Movie movieToSave, String email, String modalita, MainActivityViewModel viewModel){
         MovieAddRequest movieAddRequest = new MovieAddRequest(movieToSave,modalita,email);
         Call<User> call = movieService.addMovie(movieAddRequest);
         call.enqueue(new Callback<User>() {
@@ -53,6 +55,7 @@ public class MovieRepository {
 
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
+                    aggiornaClassifica(viewModel);
                 }
                 else if(response.errorBody() != null){
                     Log.d(TAG, "errore1"+response.code());
@@ -62,13 +65,14 @@ public class MovieRepository {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
+                aggiornaClassifica(viewModel);
             }
         });
     }
 
     //------------------------------> REMOVE MOVIE
     // modalità: tolto dalla lista dei film da vedere oppure dalla lista dei film visti
-    public void removeMovie(String movieToRemove, String email, String modalita){
+    public void removeMovie(String movieToRemove, String email, String modalita, MainActivityViewModel viewModel){
         MovieRemoveRequest movieRemoveRequest = new MovieRemoveRequest(movieToRemove,modalita,email);
         Gson jsonConverter = new Gson();
         Log.d(TAG, jsonConverter.toJson(movieRemoveRequest));
@@ -76,20 +80,25 @@ public class MovieRepository {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
                 }
                 else if(response.errorBody() != null){
                     Log.d(TAG, "errore1 "+response.code());
                 }
+                aggiornaClassifica(viewModel);
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
+                aggiornaClassifica(viewModel);
             }
         });
+    }
+
+    private void aggiornaClassifica(MainActivityViewModel viewModel) {
+        viewModel.aggiornaClassificaFilm();
     }
 
     public Movie createMovie(MovieAPIResponse movieToAdd){
@@ -115,8 +124,6 @@ public class MovieRepository {
                                                      responseList.get(i).getPoster(),
                                                      responseList.get(i).getDurata()));
                     }
-                    Log.d(TAG, classificaFilm.get(0).getTitolo());
-
                     classificaFilmLiveData.postValue(classificaFilm);
 
                 }
@@ -132,5 +139,6 @@ public class MovieRepository {
         });
     }
     //-------------------------------//
+
 
 }
