@@ -40,24 +40,30 @@ public class MovieAPIRepository {
 
     public void getMovie(MutableLiveData<MovieAPIResponse> movie, String title){
         Call<MovieAPIResponse> call = movieAPIService.getMovie(Constants.OMDB_API_KEY, title);
+        Log.d(TAG, title);
         call.enqueue(new Callback<MovieAPIResponse>() {
             @Override
             public void onResponse(Call<MovieAPIResponse> call, Response<MovieAPIResponse> response) {
 
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
-                    MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
+                    try {
+                        MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
 
-                    movieAPIResponse.setGenre(response.body().getGenre());
-                    movieAPIResponse.setImdbID(response.body().getImdbID());
-                    movieAPIResponse.setPlot(response.body().getPlot());
-                    movieAPIResponse.setPoster(response.body().getPoster());
-                    movieAPIResponse.setTitle(response.body().getTitle());
-                    movieAPIResponse.setRuntime(response.body().getRuntime());
-                    movieAPIResponse.setResponse(response.isSuccessful());
-                    movieAPIResponse.setImdbRating(response.body().getImdbRating());
-                    Log.d(TAG, "imdbRating:"+movieAPIResponse.getImdbRating());
-                    movie.postValue(movieAPIResponse);
+                        movieAPIResponse.setGenre(response.body().getGenre());
+                        movieAPIResponse.setImdbID(response.body().getImdbID());
+                        movieAPIResponse.setPlot(response.body().getPlot());
+                        movieAPIResponse.setPoster(response.body().getPoster());
+                        movieAPIResponse.setTitle(response.body().getTitle());
+                        movieAPIResponse.setRuntime(response.body().getRuntime());
+                        movieAPIResponse.setResponse(response.isSuccessful());
+                        movieAPIResponse.setRating(response.body().getImdbRatingString());
+                        Log.d(TAG, "imdbRating:" + movieAPIResponse.getRating());
+                        movie.postValue(movieAPIResponse);
+                    }
+                    catch(Exception e){
+                        Log.d(TAG, "presa exception");
+                    }
                 }
                 else if(response.errorBody() != null){
                     MovieAPIResponse movieAPIResponse = new MovieAPIResponse();
@@ -89,6 +95,7 @@ public class MovieAPIRepository {
 
     public void getMovieById(MutableLiveData<MovieAPIResponse> movie, String id){
         Call<MovieAPIResponse> call = movieAPIService.getMovieById(Constants.OMDB_API_KEY, id);
+        Log.d(TAG, id);
         call.enqueue(new Callback<MovieAPIResponse>() {
             @Override
             public void onResponse(Call<MovieAPIResponse> call, Response<MovieAPIResponse> response) {
@@ -104,8 +111,8 @@ public class MovieAPIRepository {
                     movieAPIResponse.setTitle(response.body().getTitle());
                     movieAPIResponse.setRuntime(response.body().getRuntime());
                     movieAPIResponse.setResponse(response.isSuccessful());
-                    movieAPIResponse.setImdbRating(response.body().getImdbRating());
-                    Log.d(TAG, "imdbRating:"+movieAPIResponse.getImdbRating());
+                    movieAPIResponse.setRating(response.body().getImdbRatingString());
+                    Log.d(TAG, "imdbRating:"+movieAPIResponse.getRating());
                     movie.postValue(movieAPIResponse);
                 }
                 else if(response.errorBody() != null){
@@ -127,7 +134,7 @@ public class MovieAPIRepository {
                 movieAPIResponse.setResponse(false);
                 movie.postValue(movieAPIResponse);
 
-                Log.d(TAG, "errore2: "+t.getMessage());
+                Log.d(TAG, "errore2 id: "+t.getMessage());
             }
         });
     }

@@ -14,7 +14,11 @@ public class MovieAPIResponse implements Parcelable {
     private String Plot;
     //durata film
     private String Runtime;
-    private float imdbRating;
+    //per permettere la mappatura dei campi in entrata
+    private String imdbRating;
+
+    private float rating;
+
 
 
     public MovieAPIResponse(){}
@@ -27,7 +31,23 @@ public class MovieAPIResponse implements Parcelable {
         Poster = poster;
         Plot = plot;
         Runtime = runtime;
-        this.imdbRating = imdbRating;
+        this.rating = imdbRating;
+    }
+
+    public MovieAPIResponse(boolean response, String imdbID, String title, String genre, String poster, String plot, String runtime, String imdbRating) {
+        Response = response;
+        this.imdbID = imdbID;
+        Title = title;
+        Genre = genre;
+        Poster = poster;
+        Plot = plot;
+        Runtime = runtime;
+        try{
+            this.rating = Float.parseFloat(imdbRating);
+        }
+        catch(NumberFormatException e){
+            this.rating = 0;
+        }
     }
 
     protected MovieAPIResponse(Parcel in) {
@@ -38,6 +58,12 @@ public class MovieAPIResponse implements Parcelable {
         Poster = in.readString();
         Plot = in.readString();
         Runtime = in.readString();
+        try{
+            rating = Float.parseFloat(in.readString());
+        }
+        catch(NumberFormatException e){
+            rating = 0;
+        }
     }
 
     public static final Creator<MovieAPIResponse> CREATOR = new Creator<MovieAPIResponse>() {
@@ -66,7 +92,7 @@ public class MovieAPIResponse implements Parcelable {
         dest.writeString(Poster);
         dest.writeString(Plot);
         dest.writeString(Runtime);
-        dest.writeFloat(imdbRating);
+        dest.writeFloat(rating);
     }
 
     //------------------------------> GETTER E SETTER
@@ -126,12 +152,21 @@ public class MovieAPIResponse implements Parcelable {
         Runtime = runtime;
     }
 
-    public float getImdbRating() {
-        return imdbRating;
+    public float getRating() {
+        return rating;
     }
 
-    public void setImdbRating(float imdbRating) {
-        this.imdbRating = imdbRating/2;
+    public void setRating(float imdbRatingFloat) {
+        this.rating = imdbRatingFloat /2;
+    }
+
+    public void setRating(String imdbRating) {
+        try{
+            setRating(Float.parseFloat(imdbRating));
+        }
+        catch(Exception e){
+            this.rating = 0;
+        }
     }
 
     @Override
@@ -143,9 +178,13 @@ public class MovieAPIResponse implements Parcelable {
                 ", Genre='" + Genre + '\'' +
                 ", Poster='" + Poster + '\'' +
                 ", Runtime='" + Runtime + '\'' +
-                ", imdbRating='" + imdbRating + '\'' +
+                ", imdbRating='" + rating + '\'' +
                 ", Plot='" + Plot + '\'' +
                 '}';
+    }
+
+    public String getImdbRatingString() {
+        return imdbRating;
     }
 
 

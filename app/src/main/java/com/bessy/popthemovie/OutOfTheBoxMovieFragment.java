@@ -110,8 +110,20 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     public void bind(Movie movie){
         binding.titoloTextViewOTB.setText(movie.getTitolo());
         binding.genereTextViewOTB.setText(movie.getGenere());
+        binding.durataTextViewOTB.setText(movie.getDurata());
         Picasso.get().load(movie.getPoster()).into(binding.posterImageViewOTB);
-
+        binding.addDaVedereButtonOTB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.addFilmDaVedere(movie);
+            }
+        });
+        binding.addVistiButtonOTB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.addFilmVisto(movie);
+            }
+        });
     }
 
     @Override

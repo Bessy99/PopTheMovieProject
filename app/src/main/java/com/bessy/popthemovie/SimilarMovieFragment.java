@@ -104,6 +104,7 @@ public class SimilarMovieFragment extends Fragment {
     public void bind(Movie movie){
         binding.titoloTextViewSimilar.setText(movie.getTitolo());
         binding.genereTextViewSimilar.setText(movie.getGenere());
+        binding.durataTextViewSimilar.setText(movie.getDurata());
         Picasso.get().load(movie.getPoster()).into(binding.posterImageViewSimilar);
 
     }

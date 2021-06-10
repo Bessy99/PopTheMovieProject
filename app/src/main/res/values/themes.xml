@@ -36,7 +36,6 @@
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/kaushan_script</item>
         <item name="android:textSize">30dp</item>
-
     </style>
 
     <style name="BottomNavigationTheme" >
@@ -45,10 +44,14 @@
         <item name="itemBackground">?colorSecondary</item>
     </style>
 
-    <style name="TextOnSecondaryTheme">
+    <style name="TextOnSecondaryTheme" parent="TextOnSecondaryColor">
         <item name="android:textColor">?colorPrimary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextOnSecondaryColor" >
+        <item name="android:textColor">?colorPrimary</item>
     </style>
 
 </resources>

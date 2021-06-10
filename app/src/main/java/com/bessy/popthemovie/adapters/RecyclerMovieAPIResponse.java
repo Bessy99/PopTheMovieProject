@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bessy.popthemovie.R;
-import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +55,7 @@ public class RecyclerMovieAPIResponse extends RecyclerView.Adapter<RecyclerView.
             genereTextView.setText(movieNext.getGenre());
             Picasso.get().load(movieNext.getPoster()).into(posterImageView);
             ratingBar.setIsIndicator(false);
-            ratingBar.setRating(movieNext.getImdbRating());
+            ratingBar.setRating(movieNext.getRating());
             ratingBar.setIsIndicator(true);
         }
     }

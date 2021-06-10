@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -76,7 +75,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
                     if (controllo()) {
-                        viewModel.AddFilmVisto(viewModel.getLastMovie().getValue());
+                        viewModel.addFilmVisto(viewModel.getLastMovie().getValue());
                         Snackbar.make(v, "Film aggiunto alla lista dei film visti!", Snackbar.LENGTH_SHORT).show();
                     } else {
                         Snackbar.make(v, "Il film è già presente nelle tue liste!", Snackbar.LENGTH_SHORT).show();
@@ -93,7 +92,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 if(viewModel.getLastMovie().getValue()!=null && viewModel.getLastMovie().getValue().getImdbID()!=null) {
                     if (controllo()) {
-                        viewModel.AddFilmDaVedere(viewModel.getLastMovie().getValue());
+                        viewModel.addFilmDaVedere(viewModel.getLastMovie().getValue());
                         Snackbar.make(v, "Film aggiunto alla lista dei film da vedere!", Snackbar.LENGTH_SHORT).show();
 
                     } else {

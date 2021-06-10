@@ -102,17 +102,28 @@ public class MainActivityViewModel extends ViewModel {
 
     //---------------------> Aggiungere movie alle liste dello User
 
-    public void AddFilmVisto(MovieAPIResponse movieToAdd){
+    public void addFilmVisto(MovieAPIResponse movieToAdd){
         Movie movie = movieRepository.createMovie(movieToAdd);
         movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"visti");
         getUser().getValue().getFilmVisti().add(movie);
     }
 
-    public void AddFilmDaVedere(MovieAPIResponse movieToAdd){
+    public void addFilmDaVedere(MovieAPIResponse movieToAdd){
         Movie movie = movieRepository.createMovie(movieToAdd);
         movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
         getUser().getValue().getFilmDaVedere().add(movie);
     }
+
+    public void addFilmVisto(Movie movie){
+        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"visti");
+        getUser().getValue().getFilmVisti().add(movie);
+    }
+
+    public void addFilmDaVedere(Movie movie){
+        movieRepository.saveMovie(movie, getUser().getValue().getEmail(),"daVedere");
+        getUser().getValue().getFilmDaVedere().add(movie);
+    }
+
 
     //----------------------//
     //---------------------> Rimuovere movie dalle liste dello User
