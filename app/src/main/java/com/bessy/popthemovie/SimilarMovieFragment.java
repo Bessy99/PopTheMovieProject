@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -116,6 +117,14 @@ public class SimilarMovieFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.addFilmVisto(movie);
+            }
+        });
+        binding.buttonVediDettagliSimilar.setVisibility(View.VISIBLE);
+        binding.buttonVediDettagliSimilar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.getMovieByTitle(movie.getTitolo());
+                Navigation.findNavController(v).navigate(R.id.action_navigationSimilar_to_navigationDettaglio);
             }
         });
 

@@ -63,14 +63,34 @@
                         android:textAppearance="?attr/textAppearanceBody2"
                         style="@style/ClassificaSottotiliTheme"
                         />
-                    <TextView
-                        android:id="@+id/durataTextViewSimilar"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:layout_marginTop="8dp"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        style="@style/ClassificaSottotiliTheme"
-                        />
+                        >
+
+                        <TextView
+                            android:id="@+id/durataTextViewSimilar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            style="@style/ClassificaSottotiliTheme"
+                            />
+
+                        <ImageButton
+                            android:id="@+id/buttonVediDettagliSimilar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/info_icon"
+                            android:tint="@color/primaryColor"
+                            android:visibility="invisible"/>
+
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -79,27 +99,20 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:layout_weight="20"
-            android:weightSum="99">
+            android:weightSum="100">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addVistiButtonSimilar"
                 android:layout_width="0dp"
-                android:layout_weight="33"
+                android:layout_weight="50"
                 android:layout_height="wrap_content"
                 android:text="Visto"
                 android:layout_margin="8dp"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addDaVedereButtonSimilar"
                 android:layout_width="0dp"
-                android:layout_weight="33"
+                android:layout_weight="50"
                 android:layout_height="wrap_content"
                 android:text="Da vedere"
-                android:layout_margin="8dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nextButtonSimilar"
-                android:layout_width="0dp"
-                android:layout_weight="33"
-                android:layout_height="wrap_content"
-                android:text="Next"
                 android:layout_margin="8dp"/>
         </LinearLayout>
     </LinearLayout>

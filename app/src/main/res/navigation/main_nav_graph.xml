@@ -26,7 +26,11 @@
         android:id="@+id/navigationSimilar"
         android:name="com.bessy.popthemovie.SimilarMovieFragment"
         android:label="@string/toolbarLabel_similar"
-        tools:layout="@layout/fragment_similar_movie" />
+        tools:layout="@layout/fragment_similar_movie" >
+        <action
+            android:id="@+id/action_navigationSimilar_to_navigationDettaglio"
+            app:destination="@id/navigationDettaglio" />
+    </fragment>
     <fragment
         android:id="@+id/navigationOutOfTheBox"
         android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
