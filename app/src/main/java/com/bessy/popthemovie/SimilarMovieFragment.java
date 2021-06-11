@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.bessy.popthemovie.databinding.FragmentSimilarMovieBinding;
 import com.bessy.popthemovie.models.Movie;
+import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.squareup.picasso.Picasso;
 import com.squareup.seismic.ShakeDetector;
@@ -36,7 +37,8 @@ public class SimilarMovieFragment extends Fragment {
     private MainActivityViewModel viewModel;
     private List<Movie> classificaFilmList;
     private int position;
-    private long lastShake=0;
+    private long lastShake = 0;
+    private boolean viewDetails = false;
 
 
     public SimilarMovieFragment() {
@@ -60,18 +62,25 @@ public class SimilarMovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Affinità");
-        position = 0;
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-
         viewModel.getClassificaFilm();
+        position = viewModel.getPositionSimilar();
+
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> classificaFilm) {
                 if(classificaFilm!=null) {
                     classificaFilmList = classificaFilm;
                     Log.d(TAG, "numero film classifica: "+classificaFilmList.size());
+                    //visualizzo il primo suggerimento
+                    if (classificaFilmList != null && classificaFilmList.size() > 0) {
+                        if (position >= classificaFilmList.size()) {
+                            position = 0;
+                        }
+                        bind(classificaFilmList.get(position));
+                        position++;
+                    }
                 }
                 else {
                     Log.d(TAG, "niente");
@@ -125,6 +134,7 @@ public class SimilarMovieFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.getMovieByTitle(movie.getTitolo());
+                viewDetails = true;
                 Navigation.findNavController(v).navigate(R.id.action_navigationSimilar_to_navigationDettaglio);
             }
         });
@@ -145,6 +155,10 @@ public class SimilarMovieFragment extends Fragment {
     public void onPause() {
         super.onPause();
         sd.stop();
+        if(viewDetails){
+            int p = position - 1;
+            viewModel.setPositionSimilar(p);
+            viewDetails = false;
+        }else viewModel.setPositionSimilar(0);
     }
-
 }

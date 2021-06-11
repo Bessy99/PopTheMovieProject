@@ -22,6 +22,7 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<MovieAPIResponse> movieAPIResponse;
     private MutableLiveData<List<Movie>> classificaFilm;
     private MovieRepository movieRepository = MovieRepository.getInstance();
+    private int positionSimilar = 0;
 
     //------------------> User
 
@@ -202,5 +203,13 @@ public class MainActivityViewModel extends ViewModel {
 
     //---------------------//
 
+    //---------------------> Salva la posizione a cui è arrivata la lista
+    public int getPositionSimilar(){
+        return positionSimilar;
+    }
+    public void setPositionSimilar(int position){
+        positionSimilar = position;
+    }
+    //--------------------//
 
 }
