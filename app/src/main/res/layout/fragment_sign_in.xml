@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SignInFragment">
+    tools:context=".SignInFragment"
+    android:background="@color/secondaryDarkColor">
 
     <TextView
         android:id="@+id/text_view_registrati_signin"
@@ -14,6 +15,7 @@
         android:layout_marginTop="100dp"
         android:text="Registrati!"
         android:textSize="30sp"
+        android:textColor="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutSignin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -38,13 +40,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="Nome"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                style="@style/MyTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nome_signin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@android:color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -53,13 +57,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="Cognome"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                style="@style/MyTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/cognome_signin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@android:color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -68,13 +74,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="Username"
-                app:endIconMode="clear_text">
+                app:endIconMode="clear_text"
+                style="@style/MyTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/username_signin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -83,13 +91,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="Password"
-                app:endIconMode="password_toggle">
+                app:endIconMode="password_toggle"
+                style="@style/MyTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_signin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

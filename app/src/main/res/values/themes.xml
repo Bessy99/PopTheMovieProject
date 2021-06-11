@@ -65,4 +65,10 @@
         <item name="android:textColor">?colorPrimary</item>
     </style>
 
+    <style name="MyTextInputLayout" >
+        <item name="android:textColorHint">?colorPrimary</item>
+        <item name="boxBackgroundColor">@color/secondaryLightColor</item>
+
+    </style>
+
 </resources>

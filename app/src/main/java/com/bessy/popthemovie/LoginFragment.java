@@ -20,6 +20,7 @@ import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
 import com.bessy.popthemovie.databinding.FragmentLoginBinding;
 import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.LoginViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -92,8 +93,7 @@ public class LoginFragment extends Fragment {
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.action_loginFragment_to_mainActivity);
                 }
                 else {
-                    binding.userTextInputLayout.setError(" ");
-                    binding.passwordTextInputLayout.setError("Username o password errate");
+                    Snackbar.make(view, "Username o password errati!", Snackbar.LENGTH_SHORT).show();
                 }
             }
         };
