@@ -75,6 +75,6 @@ public class DettaglioMovieFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        viewModel.getLastMovie().postValue(new MovieAPIResponse());
+        viewModel.getLastMovie().postValue(null);
     }
 }

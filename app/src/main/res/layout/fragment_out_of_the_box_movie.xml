@@ -7,7 +7,15 @@
     android:orientation="vertical"
     android:padding="8dp"
     android:weightSum="100"
+    android:background="@color/secondaryDarkColor"
     tools:context=".OutOfTheBoxMovieFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shake per un nuovo suggerimento!"
+        style="@style/TextOnSecondaryTheme"
+        android:gravity="center"/>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardMovieOTB"
@@ -20,38 +28,65 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:weightSum="100">
                 <!-- Media -->
                 <ImageView
                     android:id="@+id/posterImageViewOTB"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="70"
                     android:cropToPadding="true"
                     />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    android:layout_weight="30"
+                    >
 
-                <TextView
-                    android:id="@+id/titoloTextViewOTB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextOnSecondaryColor"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    />
-                <TextView
-                    android:id="@+id/genereTextViewOTB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    style="@style/TextOnSecondaryColor"
-                    />
-                <TextView
-                    android:id="@+id/durataTextViewOTB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    style="@style/TextOnSecondaryColor"
-                    />
+                    <TextView
+                        android:id="@+id/titoloTextViewOTB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/ClassificaTitleTheme"
+                        />
+                    <TextView
+                        android:id="@+id/genereTextViewOTB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        style="@style/ClassificaSottotiliTheme"
+                        />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/durataTextViewOTB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            style="@style/ClassificaSottotiliTheme"
+                            />
+
+                        <ImageButton
+                            android:id="@+id/buttonVediDettagliOTB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/info_icon"
+                            android:tint="@color/primaryColor"
+                            android:visibility="invisible"/>
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
         <LinearLayout
@@ -59,27 +94,20 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:layout_weight="20"
-            android:weightSum="99">
+            android:weightSum="100">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addVistiButtonOTB"
                 android:layout_width="0dp"
-                android:layout_weight="33"
+                android:layout_weight="50"
                 android:layout_height="wrap_content"
                 android:text="Visto"
                 android:layout_margin="8dp"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addDaVedereButtonOTB"
                 android:layout_width="0dp"
-                android:layout_weight="33"
+                android:layout_weight="50"
                 android:layout_height="wrap_content"
                 android:text="Da vedere"
-                android:layout_margin="8dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nextButtonOTB"
-                android:layout_width="0dp"
-                android:layout_weight="33"
-                android:layout_height="wrap_content"
-                android:text="Next"
                 android:layout_margin="8dp"/>
         </LinearLayout>
     </LinearLayout>

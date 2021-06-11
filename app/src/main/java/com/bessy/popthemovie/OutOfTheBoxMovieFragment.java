@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -42,6 +43,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     private SensorManager sm;
     private ShakeDetector sd;
     private long lastShake = 0;
+    private boolean viewDetails = false;
 
     public OutOfTheBoxMovieFragment() {
         // Required empty public constructor
@@ -67,13 +69,21 @@ public class OutOfTheBoxMovieFragment extends Fragment {
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Out of the box!");
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
         viewModel.getClassificaFilm();
+        position = viewModel.getPositionOTB();
+
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> classificaFilm) {
                 if(classificaFilm!=null && classificaFilm.size()>0) {
                     classificaFilmList = classificaFilm;
-                    position = classificaFilmList.size()-1;
+                    if(position == -1) {
+                        position = classificaFilmList.size() - 1;
+                    }
+                    //visualizzo primo suggerimento
+                    bind(classificaFilmList.get(position));
+                    position--;
                     Log.d(TAG, "numero film classifica: "+position);
+
                 }
                 else {
                     Log.d(TAG, "niente");
@@ -124,6 +134,16 @@ public class OutOfTheBoxMovieFragment extends Fragment {
                 viewModel.addFilmVisto(movie);
             }
         });
+        if(binding.buttonVediDettagliOTB.getVisibility()==View.INVISIBLE)
+            binding.buttonVediDettagliOTB.setVisibility(View.VISIBLE);
+        binding.buttonVediDettagliOTB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.getMovieByTitle(movie.getTitolo());
+                viewDetails = true;
+                Navigation.findNavController(v).navigate(R.id.action_navigationOutOfTheBox_to_navigationDettaglio);
+            }
+        });
     }
 
     @Override
@@ -136,6 +156,11 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     public void onPause() {
         super.onPause();
         sd.stop();
+        if(viewDetails){
+            int p = position +1;
+            viewModel.setPositionOTB(p);
+            viewDetails = false;
+        }else viewModel.setPositionOTB(-1);
     }
 
     public boolean separateShake(){

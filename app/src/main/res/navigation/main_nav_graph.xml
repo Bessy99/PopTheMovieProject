@@ -35,7 +35,11 @@
         android:id="@+id/navigationOutOfTheBox"
         android:name="com.bessy.popthemovie.OutOfTheBoxMovieFragment"
         android:label="@string/toolbarLabel_outOfTheBox"
-        tools:layout="@layout/fragment_out_of_the_box_movie" />
+        tools:layout="@layout/fragment_out_of_the_box_movie" >
+        <action
+            android:id="@+id/action_navigationOutOfTheBox_to_navigationDettaglio"
+            app:destination="@id/navigationDettaglio" />
+    </fragment>
     <fragment
         android:id="@+id/navigationDettaglio"
         android:name="com.bessy.popthemovie.DettaglioMovieFragment"

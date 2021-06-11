@@ -51,13 +51,14 @@
 
     <style name="ClassificaTitleTheme" parent="TextOnSecondaryTheme">
         <item name="android:gravity">center</item>
-
+        <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
     </style>
 
     <style name="ClassificaSottotiliTheme" parent="TextOnSecondaryColor">
         <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">italic</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
     </style>
 
     <style name="TextOnSecondaryColor" >

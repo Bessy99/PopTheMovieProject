@@ -23,6 +23,7 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<List<Movie>> classificaFilm;
     private MovieRepository movieRepository = MovieRepository.getInstance();
     private int positionSimilar = 0;
+    private int positionOTB = -1;
 
     //------------------> User
 
@@ -209,6 +210,13 @@ public class MainActivityViewModel extends ViewModel {
     }
     public void setPositionSimilar(int position){
         positionSimilar = position;
+    }
+
+    public int getPositionOTB(){
+        return positionOTB;
+    }
+    public void setPositionOTB(int position){
+        positionOTB = position;
     }
     //--------------------//
 
