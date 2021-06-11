@@ -22,8 +22,12 @@ public interface MovieService {
     @POST("user/removeFilm")
     Call<User> removeMovie(@Body MovieRemoveRequest movie);
 
-
     //GET CLASSIFICA FILM PER AFFINITA
     @GET("film/filmInClassifica")
     Call<List<Movie>> getClassificaFilm(@Query("id") String email);
+
+    //GET CLASSIFICA FILM OUT OF THE BOX
+    @GET("film/filmInClassificaInversa")
+    Call<List<Movie>> getClassificaFilmOTB(@Query("id") String email);
+
 }

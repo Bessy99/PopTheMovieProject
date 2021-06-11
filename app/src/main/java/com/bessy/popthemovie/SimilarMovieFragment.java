@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,7 +17,6 @@ import android.view.ViewGroup;
 
 import com.bessy.popthemovie.databinding.FragmentSimilarMovieBinding;
 import com.bessy.popthemovie.models.Movie;
-import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.squareup.picasso.Picasso;
 import com.squareup.seismic.ShakeDetector;
@@ -64,30 +62,27 @@ public class SimilarMovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Affinità");
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-        viewModel.getClassificaFilm();
+        viewModel.getClassificaFilmSimilar();
         position = viewModel.getPositionSimilar();
 
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> classificaFilm) {
-                if(classificaFilm!=null) {
+                if(classificaFilm!=null && classificaFilm.size()>0) {
                     classificaFilmList = classificaFilm;
-                    Log.d(TAG, "numero film classifica: "+classificaFilmList.size());
-                    //visualizzo il primo suggerimento
-                    if (classificaFilmList != null && classificaFilmList.size() > 0) {
-                        if (position >= classificaFilmList.size()) {
+                    if (position >= classificaFilmList.size()) {
                             position = 0;
                         }
-                        bind(classificaFilmList.get(position));
-                        position++;
-                    }
+                    bind(classificaFilmList.get(position));
+                    position++;
+                    Log.d(TAG, "numero film classifica: "+position);
                 }
                 else {
                     Log.d(TAG, "niente");
                 }
             }
         };
-        viewModel.getClassificaFilm().observe(getViewLifecycleOwner(),observerClassificaFilm);
+        viewModel.getClassificaFilmSimilar().observe(getViewLifecycleOwner(),observerClassificaFilm);
 
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         sd = new ShakeDetector(new ShakeDetector.Listener() {

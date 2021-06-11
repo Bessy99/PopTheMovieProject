@@ -21,9 +21,10 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<User> user;
     private MutableLiveData<MovieAPIResponse> movieAPIResponse;
     private MutableLiveData<List<Movie>> classificaFilm;
+    private MutableLiveData<List<Movie>> classificaFilmOTB;
     private MovieRepository movieRepository = MovieRepository.getInstance();
     private int positionSimilar = 0;
-    private int positionOTB = -1;
+    private int positionOTB = 0;
 
     //------------------> User
 
@@ -89,9 +90,9 @@ public class MainActivityViewModel extends ViewModel {
 
     //---------------------//
 
-    //--------------------> Classifica film
+    //--------------------> Classifiche film
 
-    public MutableLiveData<List<Movie>> getClassificaFilm(){
+    public MutableLiveData<List<Movie>> getClassificaFilmSimilar(){
         if(classificaFilm == null){
             classificaFilm = new MutableLiveData<List<Movie>>();
             if(getUser() != null && getUser().getValue()!=null) {
@@ -103,18 +104,32 @@ public class MainActivityViewModel extends ViewModel {
         }
         return classificaFilm;
     }
+    public MutableLiveData<List<Movie>> getClassificaFilmOTB(){
+        if(classificaFilmOTB == null){
+            classificaFilmOTB = new MutableLiveData<List<Movie>>();
+            if(getUser() != null && getUser().getValue()!=null) {
+                String s = getUser().getValue().getEmail();
+                MovieRepository.getInstance().getClassificaFilmOTB(classificaFilmOTB,s);
+            }
+            else Log.d("mainViewModel", "user vuoto");
+        }
+        return classificaFilmOTB;
+    }
 
-    public MutableLiveData<List<Movie>> aggiornaClassificaFilm(){
+    public void aggiornaClassificaFilm(){
         if(classificaFilm == null) {
             classificaFilm = new MutableLiveData<List<Movie>>();
+        }
+        if(classificaFilmOTB == null) {
+            classificaFilmOTB = new MutableLiveData<List<Movie>>();
         }
         if(getUser() != null && getUser().getValue()!=null) {
             String s = getUser().getValue().getEmail();
             Log.d("mainViewModelAggiorna", s);
             MovieRepository.getInstance().getClassificaFilm(classificaFilm, s);
+            MovieRepository.getInstance().getClassificaFilmOTB(classificaFilmOTB, s);
         }
         else Log.d("mainViewModel", "user vuoto");
-        return classificaFilm;
     }
 
     //--------------------//

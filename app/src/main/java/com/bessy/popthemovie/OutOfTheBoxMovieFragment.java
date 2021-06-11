@@ -68,7 +68,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
 
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Out of the box!");
         viewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
-        viewModel.getClassificaFilm();
+        viewModel.getClassificaFilmOTB();
         position = viewModel.getPositionOTB();
 
         Observer<List<Movie>> observerClassificaFilm = new Observer<List<Movie>>() {
@@ -76,12 +76,11 @@ public class OutOfTheBoxMovieFragment extends Fragment {
             public void onChanged(List<Movie> classificaFilm) {
                 if(classificaFilm!=null && classificaFilm.size()>0) {
                     classificaFilmList = classificaFilm;
-                    if(position == -1) {
-                        position = classificaFilmList.size() - 1;
+                    if (position >= classificaFilmList.size()) {
+                        position = 0;
                     }
-                    //visualizzo primo suggerimento
                     bind(classificaFilmList.get(position));
-                    position--;
+                    position++;
                     Log.d(TAG, "numero film classifica: "+position);
 
                 }
@@ -91,7 +90,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
             }
         };
 
-        viewModel.getClassificaFilm().observe(getViewLifecycleOwner(),observerClassificaFilm);
+        viewModel.getClassificaFilmOTB().observe(getViewLifecycleOwner(),observerClassificaFilm);
 
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
         sd = new ShakeDetector(new ShakeDetector.Listener() {
@@ -101,11 +100,11 @@ public class OutOfTheBoxMovieFragment extends Fragment {
                     if (separateShake()) {
                         Log.d(TAG, "shakee!" + position);
                         lastShake = System.currentTimeMillis();
-                        if (position < 0)
-                        { position = classificaFilmList.size() - 1;}
-
+                        if (position >= classificaFilmList.size()) {
+                            position = 0;
+                        }
                         bind(classificaFilmList.get(position));
-                        position--;
+                        position++;
                     }
                 }
                 else {
@@ -157,10 +156,10 @@ public class OutOfTheBoxMovieFragment extends Fragment {
         super.onPause();
         sd.stop();
         if(viewDetails){
-            int p = position +1;
+            int p = position -1;
             viewModel.setPositionOTB(p);
             viewDetails = false;
-        }else viewModel.setPositionOTB(-1);
+        }else viewModel.setPositionOTB(0);
     }
 
     public boolean separateShake(){
