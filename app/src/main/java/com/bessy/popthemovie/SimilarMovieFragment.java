@@ -119,7 +119,8 @@ public class SimilarMovieFragment extends Fragment {
                 viewModel.addFilmVisto(movie);
             }
         });
-        binding.buttonVediDettagliSimilar.setVisibility(View.VISIBLE);
+        if(binding.buttonVediDettagliSimilar.getVisibility()==View.INVISIBLE)
+            binding.buttonVediDettagliSimilar.setVisibility(View.VISIBLE);
         binding.buttonVediDettagliSimilar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
