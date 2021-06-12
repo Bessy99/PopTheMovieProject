@@ -48,10 +48,10 @@ public class MovieRepository {
     // modalità: aggiungerlo alla lista dei film da vedere oppure alla lista dei film visti
     public void saveMovie(Movie movieToSave, String email, String modalita, MainActivityViewModel viewModel){
         MovieAddRequest movieAddRequest = new MovieAddRequest(movieToSave,modalita,email);
-        Call<User> call = movieService.addMovie(movieAddRequest);
-        call.enqueue(new Callback<User>() {
+        Call<String> call = movieService.addMovie(movieAddRequest);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
 
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
@@ -63,7 +63,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
                 aggiornaClassifica(viewModel);
             }
@@ -76,10 +76,10 @@ public class MovieRepository {
         MovieRemoveRequest movieRemoveRequest = new MovieRemoveRequest(movieToRemove,modalita,email);
         Gson jsonConverter = new Gson();
         Log.d(TAG, jsonConverter.toJson(movieRemoveRequest));
-        Call<User> call = movieService.removeMovie(movieRemoveRequest);
-        call.enqueue(new Callback<User>() {
+        Call<String> call = movieService.removeMovie(movieRemoveRequest);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
                 }
@@ -90,7 +90,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
                 aggiornaClassifica(viewModel);
             }

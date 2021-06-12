@@ -16,11 +16,11 @@ import retrofit2.http.Query;
 public interface MovieService {
     // ADD NEW FILM
     @POST("user/addFilm")
-    Call<User> addMovie(@Body MovieAddRequest movie);
+    Call<String> addMovie(@Body MovieAddRequest movie);
 
     // REMOVE FILM
     @POST("user/removeFilm")
-    Call<User> removeMovie(@Body MovieRemoveRequest movie);
+    Call<String> removeMovie(@Body MovieRemoveRequest movie);
 
     //GET CLASSIFICA FILM PER AFFINITA
     @GET("film/filmInClassifica")
