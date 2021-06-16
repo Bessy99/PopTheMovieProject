@@ -3,6 +3,10 @@ package com.bessy.popthemovie;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,12 +15,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
 import com.bessy.popthemovie.databinding.FragmentSignInBinding;
 import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.utils.Constants;
@@ -46,7 +44,7 @@ public class SignInFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentSignInBinding.inflate(getLayoutInflater());
@@ -62,25 +60,26 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 resetErrorMessages();
-                String nome = binding.nomeSignin.getText().toString();
-                String cognome = binding.cognomeSignin.getText().toString();
-                String username = binding.usernameSignin.getText().toString();
-                String password = binding.passwordSignin.getText().toString();
-                if(!nome.equals("") && !cognome.equals("") && !username.equals("") && !password.equals("")) {
-                    User u = new User(username, password, nome, cognome, null, null);
-                    viewModel.saveUser(u);
-                }
-                else{
-                    if(nome.equals("")){
-                        binding.nomeTextInputLayoutSignin.setError("inserisci il tuo nome");
-                        Log.d("d error", "error nome");
+                if(binding.nomeSignin.getText()!=null && binding.cognomeSignin.getText()!=null && binding.usernameSignin.getText()!=null && binding.passwordSignin.getText()!= null) {
+                    String nome = binding.nomeSignin.getText().toString();
+                    String cognome = binding.cognomeSignin.getText().toString();
+                    String username = binding.usernameSignin.getText().toString();
+                    String password = binding.passwordSignin.getText().toString();
+                    if (!nome.equals("") && !cognome.equals("") && !username.equals("") && !password.equals("")) {
+                        User u = new User(username, password, nome, cognome, null, null);
+                        viewModel.saveUser(u);
+                    } else {
+                        if (nome.equals("")) {
+                            binding.nomeTextInputLayoutSignin.setError("inserisci il tuo nome");
+                            Log.d("d error", "error nome");
+                        }
+                        if (cognome.equals(""))
+                            binding.cognomeTextInputLayoutSignin.setError("inserisci il tuo cognome");
+                        if (username.equals(""))
+                            binding.usernameTextInputLayoutSignin.setError("inserisci la tua email");
+                        if (password.equals(""))
+                            binding.passwordTextInputLayoutSignin.setError("inserisci la password");
                     }
-                    if(cognome.equals(""))
-                        binding.cognomeTextInputLayoutSignin.setError("inserisci il tuo cognome");
-                    if(username.equals(""))
-                        binding.usernameTextInputLayoutSignin.setError("inserisci la tua email");
-                    if(password.equals(""))
-                        binding.passwordTextInputLayoutSignin.setError("inserisci la password");
                 }
             }
         });
@@ -88,17 +87,19 @@ public class SignInFragment extends Fragment {
         Observer<User> userSaved = new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                String password = binding.passwordSignin.getText().toString();
-                String username = binding.usernameSignin.getText().toString();
-                SharedPreferences sharedPref = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
+                if(user != null) {
+                    String password = user.getPassword();
+                    String username = user.getEmail();
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
 
-                editor.putString(Constants.SHARED_PREFERENCES_USERNAME, username);
-                editor.putString(Constants.SHARED_PREFERENCES_PASSWORD, password);
+                    editor.putString(Constants.SHARED_PREFERENCES_USERNAME, username);
+                    editor.putString(Constants.SHARED_PREFERENCES_PASSWORD, password);
 
-                editor.apply();
+                    editor.apply();
 
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_signInFragment_to_mainActivity);
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.action_signInFragment_to_mainActivity);
+                }
             }
         };
 

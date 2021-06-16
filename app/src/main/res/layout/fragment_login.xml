@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryDarkColor">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Benvenuto in PopTheMovie!"
+        android:gravity="center"
+        android:text="@string/benvenuto_text_view"
         android:textSize="30sp"
         android:textColor="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Username"
+            android:hint="@string/username_login_hint"
             app:endIconMode="clear_text"
             style="@style/MyTextInputLayout">
 
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="Password"
+            android:hint="@string/password_login_hint"
             app:endIconMode="password_toggle"
             style="@style/MyTextInputLayout">
 
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:layout_margin="8dp"
-            android:text="Accedi" />
+            android:text="@string/accedi_login_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/registrati_button_login"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:layout_margin="8dp"
-            android:text="Registrati" />
+            android:text="@string/registrati_login_button" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

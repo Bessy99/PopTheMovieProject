@@ -3,19 +3,19 @@
     <item
         android:id="@+id/navigationlisteUtente"
         android:icon="@drawable/ic_baseline_playlist_add_check_24"
-        android:title="Le mie liste"/>
+        android:title="@string/le_mie_liste_menu"/>
     <item
         android:id="@+id/navigationSearch"
         android:icon="@drawable/search_icon"
-        android:title="Cerca nuovi film"/>
+        android:title="@string/cerca_nuovi_film_menu"/>
 
     <item
         android:id="@+id/navigationSimilar"
-        android:icon="@drawable/ic_baseline_skateboarding_24"
-        android:title="Simili a me"/>
+        android:icon="@drawable/ic_heart"
+        android:title="@string/simili_a_me_menu"/>
 
     <item
         android:id="@+id/navigationOutOfTheBox"
-        android:icon="@drawable/ic_baseline_stars_24"
-        android:title="Out of the box"/>
+        android:icon="@drawable/ic_light"
+        android:title="@string/out_of_the_box_menu"/>
 </menu>

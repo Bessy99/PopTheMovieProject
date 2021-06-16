@@ -3,8 +3,6 @@ package com.bessy.popthemovie.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class Movie implements Parcelable {
     private String id;
     private String titolo;

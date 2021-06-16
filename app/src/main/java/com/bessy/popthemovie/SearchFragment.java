@@ -1,26 +1,23 @@
 package com.bessy.popthemovie;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.bessy.popthemovie.databinding.FragmentSearchBinding;
-import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Iterator;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class SearchFragment extends Fragment {
 
@@ -42,7 +39,7 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(getLayoutInflater());
         return binding.getRoot();

@@ -3,7 +3,6 @@ package com.bessy.popthemovie.services;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAddRequest;
 import com.bessy.popthemovie.models.MovieRemoveRequest;
-import com.bessy.popthemovie.models.User;
 
 import java.util.List;
 

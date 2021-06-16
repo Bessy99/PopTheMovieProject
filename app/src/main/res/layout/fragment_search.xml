@@ -16,8 +16,7 @@
                 android:iconifiedByDefault="false"
                 android:searchIcon="@drawable/search_icon"
                 android:queryBackground="@color/primaryColor"
-                android:layout_margin="8dp"
-                />
+                android:layout_margin="8dp" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/searchDettaglioContainerView"
@@ -37,14 +36,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="Visto"
+                    android:text="@string/visto_button_label"
                     android:layout_margin="8dp"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addDaVedereButton"
                     android:layout_width="0dp"
                     android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="Da vedere"
+                    android:text="@string/da_vedere_button_label"
                     android:layout_margin="8dp"/>
             </LinearLayout>
 

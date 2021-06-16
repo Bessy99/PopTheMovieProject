@@ -21,13 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cropToPadding="true"
-            />
+                android:contentDescription="@string/movie_poster_image_description" />
 
             <TextView
                 android:id="@+id/titoloTextViewDettaglio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="title placeholder"
+                android:text="@string/title_dettaglio_default_text"
                 android:textColor="@color/primaryColor"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:layout_marginTop="8dp"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="genere placeholder"
+                android:text="@string/genere_dettaglio_default_text"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/primaryColor" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="plot placeholder"
+                android:text="@string/plot_dettaglio_default_text"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/primaryColor" />
 

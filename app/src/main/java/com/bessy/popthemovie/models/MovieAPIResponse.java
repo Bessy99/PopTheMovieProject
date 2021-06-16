@@ -3,6 +3,8 @@ package com.bessy.popthemovie.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MovieAPIResponse implements Parcelable {
     private boolean Response;
     private String imdbID;
@@ -169,6 +171,7 @@ public class MovieAPIResponse implements Parcelable {
         }
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "MovieAPIResponse{" +

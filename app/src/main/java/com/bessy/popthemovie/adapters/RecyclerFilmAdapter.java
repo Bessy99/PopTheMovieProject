@@ -1,10 +1,8 @@
 package com.bessy.popthemovie.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -17,14 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bessy.popthemovie.MainActivity;
 import com.bessy.popthemovie.R;
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
-import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -71,7 +65,7 @@ public class RecyclerFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             genereTextView.setText(movieNext.getGenere());
             if(movieNext.getDurata()!=null)
                 durataTextView.setText(movieNext.getDurata());
-            else durataTextView.setText("durata sconosciuta");
+            else durataTextView.setText("");
             dettagliButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

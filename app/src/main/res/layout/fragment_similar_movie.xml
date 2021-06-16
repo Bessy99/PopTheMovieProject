@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shake per un nuovo suggerimento!"
+        android:text="@string/label_shake_suggerimenti"
         style="@style/TextOnSecondaryTheme"
         android:gravity="center"/>
 
@@ -37,7 +37,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="70"
                     android:cropToPadding="true"
-                    />
+                    android:contentDescription="@string/movie_poster_image_description" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,10 +81,12 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:background="@android:color/transparent"
                             android:src="@drawable/info_icon"
                             android:tint="@color/primaryColor"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible"
+                            android:contentDescription="@string/info_icon_image_description" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -101,14 +103,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="50"
                 android:layout_height="wrap_content"
-                android:text="Visto"
+                android:text="@string/visto_button_label"
                 android:layout_margin="8dp"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addDaVedereButtonSimilar"
                 android:layout_width="0dp"
                 android:layout_weight="50"
                 android:layout_height="wrap_content"
-                android:text="Da vedere"
+                android:text="@string/da_vedere_button_label"
                 android:layout_margin="8dp"/>
         </LinearLayout>
     </LinearLayout>

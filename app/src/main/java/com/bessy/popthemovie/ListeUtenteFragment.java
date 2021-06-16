@@ -1,32 +1,23 @@
 package com.bessy.popthemovie;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.bessy.popthemovie.adapters.RecyclerFilmAdapter;
 import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
-import com.bessy.popthemovie.models.Movie;
-import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.User;
-import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class ListeUtenteFragment extends Fragment {
 
@@ -51,7 +42,7 @@ public class ListeUtenteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentListeUtenteBinding.inflate(getLayoutInflater());
         return binding.getRoot();

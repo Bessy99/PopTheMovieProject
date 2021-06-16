@@ -1,24 +1,22 @@
 package com.bessy.popthemovie;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toolbar;
-
 import com.bessy.popthemovie.databinding.ActivityMainBinding;
+import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
-import com.bessy.popthemovie.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         String password = sharedPreferences.getString(Constants.SHARED_PREFERENCES_PASSWORD, null);
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<User> user = mainActivityViewModel.getUser(username, password);
+        mainActivityViewModel.getUser(username, password);
     }
 
 

@@ -1,12 +1,8 @@
 package com.bessy.popthemovie;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.bessy.popthemovie.utils.Constants;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

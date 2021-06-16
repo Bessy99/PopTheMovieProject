@@ -3,20 +3,17 @@ package com.bessy.popthemovie;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.bessy.popthemovie.databinding.FragmentLoginBinding;
 import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.LoginViewModel;
@@ -47,7 +44,7 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(getLayoutInflater());
@@ -68,9 +65,9 @@ public class LoginFragment extends Fragment {
         binding.accediButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = binding.passwordLogin.getText().toString();
-                String username = binding.userLogin.getText().toString();
-                if(password!=null && username!=null) {
+                if(binding.passwordLogin.getText()!=null && binding.userLogin.getText()!=null) {
+                    String password = binding.passwordLogin.getText().toString();
+                    String username = binding.userLogin.getText().toString();
                     viewModel.userExist(username, password);
                 }
 
@@ -79,7 +76,7 @@ public class LoginFragment extends Fragment {
         Observer<Boolean> exists = new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean exists) {
-                if(exists){
+                if(exists && binding.passwordLogin.getText()!=null && binding.userLogin.getText()!=null ){
                     String password = binding.passwordLogin.getText().toString();
                     String username = binding.userLogin.getText().toString();
                     SharedPreferences sharedPref = getActivity().getSharedPreferences(Constants.SHARED_PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);

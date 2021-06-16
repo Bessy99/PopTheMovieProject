@@ -4,17 +4,17 @@ package com.bessy.popthemovie.repositories;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.bessy.popthemovie.models.Movie;
 import com.bessy.popthemovie.models.MovieAPIResponse;
 import com.bessy.popthemovie.models.MovieAddRequest;
 import com.bessy.popthemovie.models.MovieRemoveRequest;
-import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.services.MovieService;
 import com.bessy.popthemovie.utils.Constants;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.google.gson.Gson;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class MovieRepository {
         Call<String> call = movieService.addMovie(movieAddRequest);
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
 
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
@@ -63,7 +63,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(@NotNull Call<String> call, @NotNull Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
                 aggiornaClassifica(viewModel);
             }
@@ -79,7 +79,7 @@ public class MovieRepository {
         Call<String> call = movieService.removeMovie(movieRemoveRequest);
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
                 }
@@ -90,7 +90,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(@NotNull Call<String> call, @NotNull Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
                 aggiornaClassifica(viewModel);
             }
@@ -111,7 +111,7 @@ public class MovieRepository {
         Call<List<Movie>> call = movieService.getClassificaFilm(email);
         call.enqueue(new Callback<List<Movie>>() {
             @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+            public void onResponse(@NotNull Call<List<Movie>> call, @NotNull Response<List<Movie>> response) {
                 List<Movie> classificaFilm;
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
@@ -133,7 +133,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Movie>> call, @NotNull Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
             }
         });
@@ -143,7 +143,7 @@ public class MovieRepository {
         Call<List<Movie>> call = movieService.getClassificaFilmOTB(email);
         call.enqueue(new Callback<List<Movie>>() {
             @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+            public void onResponse(@NotNull Call<List<Movie>> call, @NotNull Response<List<Movie>> response) {
                 List<Movie> classificaFilmOTB;
                 if(response.isSuccessful() && response.body()!= null) {
                     Log.d(TAG, "risposta ok");
@@ -165,7 +165,7 @@ public class MovieRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Movie>> call, @NotNull Throwable t) {
                 Log.d(TAG, "errore2: "+t.getMessage());
             }
         });

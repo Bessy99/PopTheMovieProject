@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardMovie"
     android:layout_width="150dp"
     android:layout_height="match_parent"
@@ -26,7 +27,8 @@
                 android:layout_alignEnd="@+id/eliminaCheckBox"
                 android:layout_alignRight="@+id/eliminaCheckBox"
                 android:layout_alignParentTop="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/movie_poster_image_description" />
 
             <CheckBox
                 android:id="@+id/eliminaCheckBox"
@@ -34,6 +36,7 @@
                 android:layout_height="23dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:background="@drawable/round_button"
                 android:button="@drawable/ic_cancel"
                 app:buttonTint="@color/secondaryDarkColor" />
@@ -53,17 +56,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="60"
-                android:text="Titolo"
+                android:text="@string/titolo_default_text"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:lines="1"/>
 
             <TextView
                 android:id="@+id/genereItem"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/genere_default_text"
                 android:layout_weight="40"
-                android:text="genere"
                 android:lines="1"/>
 
         </LinearLayout>
@@ -78,7 +81,8 @@
                 android:id="@+id/durataItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="durata" />
+                android:text="@string/durata_default_text"
+                tools:ignore="RelativeOverlap" />
 
             <ImageButton
                 android:id="@+id/buttonVediDettagli"
@@ -88,7 +92,7 @@
                 android:background="@android:color/transparent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                />
+                android:contentDescription="@string/info_icon_image_description" />
         </RelativeLayout>
 
     </LinearLayout>

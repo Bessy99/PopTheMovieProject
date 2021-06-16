@@ -2,32 +2,26 @@ package com.bessy.popthemovie;
 
 import android.hardware.SensorManager;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.bessy.popthemovie.adapters.RecyclerFilmAdapter;
-import com.bessy.popthemovie.databinding.FragmentListeUtenteBinding;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.bessy.popthemovie.databinding.FragmentOutOfTheBoxMovieBinding;
 import com.bessy.popthemovie.models.Movie;
-import com.bessy.popthemovie.models.User;
 import com.bessy.popthemovie.viewModel.MainActivityViewModel;
 import com.squareup.picasso.Picasso;
 import com.squareup.seismic.ShakeDetector;
 
-import java.util.Iterator;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import static android.content.Context.SENSOR_SERVICE;
@@ -57,7 +51,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentOutOfTheBoxMovieBinding.inflate(getLayoutInflater());
         return binding.getRoot();
@@ -108,7 +102,7 @@ public class OutOfTheBoxMovieFragment extends Fragment {
                     }
                 }
                 else {
-                    binding.titoloTextViewOTB.setText("nessun suggerimento");
+                    binding.titoloTextViewOTB.setText("");
                 }
             }
         });
@@ -163,6 +157,6 @@ public class OutOfTheBoxMovieFragment extends Fragment {
     }
 
     public boolean separateShake(){
-        return ((System.currentTimeMillis() - lastShake) > 3000) ? true : false;
+        return ((System.currentTimeMillis() - lastShake) > 3000);
     }
 }
